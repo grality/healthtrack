@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Health Track</string>
+    <string name="home_welcome_message">Bienvenue sur Health Track</string>
+    <string name="email_hint">Adresse e-mail</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="login">Se connecter</string>
+    <string name="username_hint">Pseudo</string>
+    <string name="confirm_password_hint">Confirmer le mot de passe</string>
+    <string name="register">S\'enregistrer</string>
+    <string name="menu_home">Accueil</string>
+    <string name="menu_login">Connexion</string>
+    <string name="menu_register">S\'inscrire</string>
+</resources>
