@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_home"
+        android:icon="@drawable/baseline_home_24"
         android:title="@string/menu_home" />
     <item
         android:id="@+id/action_login"
+        android:icon="@drawable/baseline_face_24"
         android:title="@string/menu_login" />
     <item
         android:id="@+id/action_register"
+        android:icon="@drawable/baseline_app_registration_24"
         android:title="@string/menu_register" />
 </menu>

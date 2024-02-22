@@ -2,4 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Timberwolf -->
+    <color name="timberwolf">#dad7cd</color>
+
+    <!-- Sage -->
+    <color name="sage">#a3b18a</color>
+
+    <!-- Fern green -->
+    <color name="fern_green">#588157</color>
+
+    <!-- Hunter green -->
+    <color name="hunter_green">#3a5a40</color>
+
+    <!-- Brunswick green -->
+    <color name="brunswick_green">#344e41</color>
+
 </resources>

@@ -18,8 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewWelcome"
+        android:layout_marginLeft="14dp"
         android:layout_marginTop="64dp"
-        android:text="Votre application pour suivre vos activités physiques et rester en forme."
+        android:layout_marginRight="14dp"
+        android:text="@string/home_description"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp" />

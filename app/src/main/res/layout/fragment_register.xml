@@ -7,51 +7,60 @@
         android:id="@+id/editTextEmailRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="14dp"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="24dp"
-        android:layout_centerHorizontal="true"
         android:textColor="@android:color/white" />
 
     <EditText
         android:id="@+id/editTextUsernameRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/username_hint"
         android:layout_below="@id/editTextEmailRegister"
-        android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="14dp"
+        android:hint="@string/username_hint"
+        android:inputType="text"
         android:textColor="@android:color/white" />
 
     <EditText
         android:id="@+id/editTextPasswordRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editTextUsernameRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="14dp"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
-        android:layout_below="@id/editTextUsernameRegister"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
         android:textColor="@android:color/white" />
 
     <EditText
         android:id="@+id/editTextConfirmPasswordRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPasswordRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="14dp"
         android:hint="@string/confirm_password_hint"
         android:inputType="textPassword"
-        android:layout_below="@id/editTextPasswordRegister"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
         android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register"
         android:layout_below="@id/editTextConfirmPasswordRegister"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:text="@string/register" />
 
 </RelativeLayout>
