@@ -12,8 +12,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginRight="14dp"
         android:hint="@string/email_hint"
-        android:inputType="textEmailAddress"
-        android:textColor="@android:color/white" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/editTextUsernameRegister"
@@ -25,8 +24,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="14dp"
         android:hint="@string/username_hint"
-        android:inputType="text"
-        android:textColor="@android:color/white" />
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/editTextPasswordRegister"
@@ -38,8 +36,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="14dp"
         android:hint="@string/password_hint"
-        android:inputType="textPassword"
-        android:textColor="@android:color/white" />
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/editTextConfirmPasswordRegister"
@@ -51,8 +48,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginRight="14dp"
         android:hint="@string/confirm_password_hint"
-        android:inputType="textPassword"
-        android:textColor="@android:color/white" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/buttonRegister"
