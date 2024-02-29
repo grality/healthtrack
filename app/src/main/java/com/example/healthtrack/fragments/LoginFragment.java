@@ -11,9 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.healthtrack.MainActivity;
 import com.example.healthtrack.R;
 import com.example.healthtrack.database.DBHelper;
 import com.example.healthtrack.models.User;
+import com.example.healthtrack.utils.SessionManager;
 
 public class LoginFragment extends Fragment {
 
@@ -55,14 +57,15 @@ public class LoginFragment extends Fragment {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        // Get the user from the database based on the email
         User user = dbHelper.getUserByEmail(email);
 
         if (user != null && dbHelper.checkPassword(email, password)) {
-            // Authentication successful
+            SessionManager sessionManager = new SessionManager(getActivity());
+            sessionManager.loginUser(email, user.getUsername());
+
+            ((MainActivity) getActivity()).updateMenuVisibility();
             Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
         } else {
-            // Authentication failed
             Toast.makeText(getActivity(), "Invalid email or password", Toast.LENGTH_SHORT).show();
         }
     }

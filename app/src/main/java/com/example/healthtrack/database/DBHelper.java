@@ -104,4 +104,17 @@ public class DBHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    public long insertUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("email", user.getEmail());
+        values.put("username", user.getUsername());
+        values.put("password", user.getPassword());
+
+        long newRowId = db.insert("users", null, values);
+        db.close();
+
+        return newRowId;
+    }
 }

@@ -14,8 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.healthtrack.MainActivity;
 import com.example.healthtrack.R;
 import com.example.healthtrack.database.DBHelper;
+import com.example.healthtrack.models.User;
+import com.example.healthtrack.utils.SessionManager;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -58,18 +61,13 @@ public class RegisterFragment extends Fragment {
         String confirmPassword = editTextConfirmPassword.getText().toString().trim();
 
         if (password.equals(confirmPassword)) {
-            // Hash the password
             String hashedPassword = hashPassword(password);
-
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put("email", email);
-            values.put("username", username);
-            values.put("password", hashedPassword); // Store the hashed password
-
-            long newRowId = db.insert("users", null, values);
-
+            User newUser = new User(-1, email, username, hashedPassword);
+            long newRowId = dbHelper.insertUser(newUser);
             if (newRowId != -1) {
+                SessionManager sessionManager = new SessionManager(getActivity());
+                sessionManager.loginUser(email, username);
+                ((MainActivity) getActivity()).updateMenuVisibility();
                 Toast.makeText(getActivity(), "User registered successfully!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getActivity(), "Error registering user!", Toast.LENGTH_SHORT).show();
@@ -78,4 +76,5 @@ public class RegisterFragment extends Fragment {
             Toast.makeText(getActivity(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

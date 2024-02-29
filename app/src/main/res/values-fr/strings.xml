@@ -5,12 +5,16 @@
     <string name="email_hint">Adresse e-mail</string>
     <string name="password_hint">Mot de passe</string>
     <string name="login">Se connecter</string>
+    <string name="logout">Se déconnecter</string>
     <string name="username_hint">Pseudo</string>
     <string name="confirm_password_hint">Confirmer le mot de passe</string>
     <string name="register">S\'enregistrer</string>
     <string name="menu_home">Accueil</string>
     <string name="menu_login">Connexion</string>
+    <string name="menu_account">Compte</string>
     <string name="menu_register">S\'inscrire</string>
     <string name="home_description">Votre application pour suivre vos activités physiques et rester en forme.</string>
     <string name="maps">Carte</string>
+    <string name="hello_blank_fragment">Bonjour fragment vide</string>
+    <string name="welcome_back">Bon retour</string>
 </resources>
