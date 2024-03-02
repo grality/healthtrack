@@ -40,4 +40,14 @@ public class SessionManager {
     public String getUsername() {
         return sharedPreferences.getString(KEY_USERNAME, null);
     }
+
+    public void setEmail(String email) {
+        editor.putString(KEY_EMAIL, email);
+        editor.apply();
+    }
+
+    public void setUsername(String username) {
+        editor.putString(KEY_USERNAME, username);
+        editor.apply();
+    }
 }

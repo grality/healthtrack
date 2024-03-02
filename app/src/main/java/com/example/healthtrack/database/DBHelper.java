@@ -117,4 +117,53 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return newRowId;
     }
+
+    public void updateUsername(String email, String newUsername) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("username", newUsername);
+
+        String selection = "email=?";
+        String[] selectionArgs = { email };
+
+        db.update("users", values, selection, selectionArgs);
+        db.close();
+    }
+
+    public void updateEmail(String oldEmail, String newEmail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("email", newEmail);
+
+        String selection = "email=?";
+        String[] selectionArgs = { oldEmail };
+
+        db.update("users", values, selection, selectionArgs);
+        db.close();
+    }
+
+    public void updatePassword(String email, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("password", hashPassword(newPassword));
+
+        String selection = "email=?";
+        String[] selectionArgs = { email };
+
+        db.update("users", values, selection, selectionArgs);
+        db.close();
+    }
+
+    public void deleteUser(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String selection = "email=?";
+        String[] selectionArgs = { email };
+
+        db.delete("users", selection, selectionArgs);
+        db.close();
+    }
 }

@@ -1,17 +1,21 @@
 package com.example.healthtrack.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.healthtrack.MainActivity;
 import com.example.healthtrack.R;
+import com.example.healthtrack.database.DBHelper;
 import com.example.healthtrack.utils.SessionManager;
 
 /**
@@ -21,6 +25,14 @@ import com.example.healthtrack.utils.SessionManager;
  */
 public class AccountFragment extends Fragment {
     private Button buttonLogout;
+    private EditText editTextUsername;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private EditText editTextConfirmPassword;
+    private Button buttonSave;
+
+    private Button buttonDelete;
+    private DBHelper dbHelper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,10 +82,25 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
+        dbHelper = new DBHelper(getActivity());
+
         // Récupérer une référence vers le bouton Logout
         buttonLogout = view.findViewById(R.id.buttonLogout);
+        buttonLogout = view.findViewById(R.id.buttonLogout);
+        editTextUsername = view.findViewById(R.id.editTextUsername);
+        editTextEmail = view.findViewById(R.id.editTextEmail);
+        editTextPassword = view.findViewById(R.id.editTextPassword);
+        editTextConfirmPassword = view.findViewById(R.id.editTextConfirmPassword);
+        buttonSave = view.findViewById(R.id.buttonSave);
+        buttonDelete = view.findViewById(R.id.buttonDeleteAccount);
 
-        // Définir un écouteur de clic sur le bouton Logout
+        SessionManager sessionManager = new SessionManager(getActivity());
+
+        editTextUsername.setHint(sessionManager.getUsername());
+        editTextEmail.setHint(sessionManager.getEmail());
+        editTextPassword.setHint("******");
+        editTextConfirmPassword.setHint("******");
+
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +112,72 @@ public class AccountFragment extends Fragment {
             }
         });
 
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveChanges();
+            }
+        });
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Confirmation");
+                builder.setMessage("Are you sure you want to delete the account ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       deleteAccount();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //nothing to do here
+                    }
+                });
+                builder.show();
+            }
+        });
+
         return view;
+    }
+
+    private void saveChanges() {
+        String newUsername = editTextUsername.getText().toString().trim();
+        String newEmail = editTextEmail.getText().toString().trim();
+        String newPassword = editTextPassword.getText().toString().trim();
+        String newConfirmPassword = editTextConfirmPassword.getText().toString().trim();
+        SessionManager sessionManager = new SessionManager(getActivity());
+
+        if (!newPassword.isEmpty() && !newConfirmPassword.isEmpty() && !newPassword.equals(newConfirmPassword)) {
+            Toast.makeText(getActivity(), "Les mots de passe ne correspondent pas", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!newUsername.isEmpty() && !newUsername.equals(sessionManager.getUsername())) {
+            dbHelper.updateUsername(sessionManager.getEmail(), newUsername);
+            sessionManager.setUsername(newUsername);
+        }
+
+        if (!newEmail.isEmpty() && !newEmail.equals(sessionManager.getEmail())) {
+            dbHelper.updateEmail(sessionManager.getEmail(), newEmail);
+            sessionManager.setEmail(newEmail);
+        }
+
+        if (!newPassword.isEmpty()) {
+            dbHelper.updatePassword(sessionManager.getEmail(), newPassword);
+        }
+
+        Toast.makeText(getActivity(), "Modifications enregistrées avec succès", Toast.LENGTH_SHORT).show();
+    }
+
+    private void deleteAccount() {
+        SessionManager sessionManager = new SessionManager(getActivity());
+        dbHelper.deleteUser(sessionManager.getEmail());
+        sessionManager.logoutUser();
+        ((MainActivity) getActivity()).updateMenuVisibility();
+        Toast.makeText(getActivity(), "Account deleted successfully", Toast.LENGTH_SHORT).show();
     }
 }
