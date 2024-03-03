@@ -19,4 +19,8 @@
     <string name="maps">Carte</string>
     <string name="hello_blank_fragment">Bonjour fragment vide</string>
     <string name="welcome_back">Bon retour</string>
+    <string-array name="languages">
+        <item>Francais</item>
+        <item>Anglais</item>
+    </string-array>
 </resources>

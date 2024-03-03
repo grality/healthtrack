@@ -37,6 +37,20 @@
         android:layout_height="wrap_content"
         android:text="@string/save" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <Spinner
+        android:id="@+id/languageSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/languages" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="match_parent"

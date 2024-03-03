@@ -13,6 +13,7 @@
     import androidx.fragment.app.Fragment;
     import androidx.fragment.app.FragmentManager;
     import androidx.fragment.app.FragmentTransaction;
+    import static com.example.healthtrack.utils.Utils.setLocale;
 
     import com.example.healthtrack.databinding.ActivityMainBinding;
     import com.example.healthtrack.fragments.AccountFragment;
@@ -22,11 +23,15 @@
     import com.example.healthtrack.fragments.MapFragment;
     import com.example.healthtrack.fragments.RegisterFragment;
     import com.example.healthtrack.utils.SessionManager;
+    import com.example.healthtrack.utils.Utils;
     import com.google.android.gms.maps.CameraUpdateFactory;
     import com.google.android.gms.maps.GoogleMap;
     import com.google.android.gms.maps.OnMapReadyCallback;
     import com.google.android.gms.maps.model.LatLng;
     import com.google.android.gms.maps.model.MarkerOptions;
+
+    import java.util.Locale;
+    import java.util.Objects;
 
     public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
         private ActivityMainBinding binding;
@@ -89,9 +94,14 @@
         protected void onResume() {
             super.onResume();
             updateMenuVisibility();
+            SessionManager sessionManager = new SessionManager(this);
+            setLocale(this, sessionManager.getLanguagePref());
+            if(!Objects.equals(sessionManager.getLanguagePref(), Locale.getDefault().getLanguage())) {
+                recreate();
+            }
         }
 
-        protected void replaceFragment(Fragment fragment){
+        protected void replaceFragment(Fragment fragment) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
