@@ -19,6 +19,11 @@
     <string name="maps">Carte</string>
     <string name="hello_blank_fragment">Bonjour fragment vide</string>
     <string name="welcome_back">Bon retour</string>
+    <string name="notes">Notes</string>
+    <string name="title">Titre</string>
+    <string name="description">Description</string>
+    <string name="ajouter_une_note">Ajouter une Note :</string>
+    <string name="sauvegarder">Sauvegarder</string>
     <string-array name="languages">
         <item>Francais</item>
         <item>Anglais</item>

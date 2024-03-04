@@ -8,4 +8,8 @@
         android:id="@+id/action_account"
         android:icon="@drawable/baseline_account_24"
         android:title="@string/menu_account" />
+    <item
+        android:id="@+id/action_notes"
+        android:icon="@drawable/baseline_notes_24"
+        android:title="@string/notes"/>
 </menu>

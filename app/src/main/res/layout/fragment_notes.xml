@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.NotesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="@string/ajouter_une_note"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:autofillHints="Title"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/title"
+        android:inputType="text"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/editTextDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:autofillHints="Description"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/title"
+        android:inputType="text"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/noteSaveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="3dp"
+        android:text="@string/sauvegarder" />
+
+
+    <ListView
+        android:id="@+id/notesListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:divider="@color/timberwolf"
+        android:dividerHeight="3dp" />
+
+
+</LinearLayout>

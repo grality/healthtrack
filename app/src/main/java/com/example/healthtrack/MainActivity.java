@@ -1,10 +1,10 @@
     package com.example.healthtrack;
 
-    import android.annotation.SuppressLint;
+    import static com.example.healthtrack.utils.Utils.setLocale;
+
     import android.os.Bundle;
     import android.util.Log;
     import android.view.Menu;
-    import android.view.MenuItem;
 
     import androidx.annotation.NonNull;
     import androidx.appcompat.app.ActionBar;
@@ -13,7 +13,6 @@
     import androidx.fragment.app.Fragment;
     import androidx.fragment.app.FragmentManager;
     import androidx.fragment.app.FragmentTransaction;
-    import static com.example.healthtrack.utils.Utils.setLocale;
 
     import com.example.healthtrack.databinding.ActivityMainBinding;
     import com.example.healthtrack.fragments.AccountFragment;
@@ -21,9 +20,9 @@
     import com.example.healthtrack.fragments.HomeLoginFragment;
     import com.example.healthtrack.fragments.LoginFragment;
     import com.example.healthtrack.fragments.MapFragment;
+    import com.example.healthtrack.fragments.NotesFragment;
     import com.example.healthtrack.fragments.RegisterFragment;
     import com.example.healthtrack.utils.SessionManager;
-    import com.example.healthtrack.utils.Utils;
     import com.google.android.gms.maps.CameraUpdateFactory;
     import com.google.android.gms.maps.GoogleMap;
     import com.google.android.gms.maps.OnMapReadyCallback;
@@ -39,6 +38,9 @@
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+
+
+
             binding = ActivityMainBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
             updateMenuVisibility();
@@ -56,6 +58,8 @@
                     replaceFragment(new AccountFragment());
                 } else if (itemId == R.id.action_map) {
                     replaceFragment(new MapFragment());
+                } else if (itemId == R.id.action_notes) {
+                    replaceFragment(new NotesFragment());
                 }
                 return true;
             });
@@ -74,6 +78,10 @@
                 }
         }
 
+
+
+
+
         public void updateMenuVisibility() {
             Menu menu = binding.bottomNavigationView.getMenu();
             SessionManager sessionManager = new SessionManager(this);
@@ -84,7 +92,8 @@
             if (sessionManager.isLoggedIn()) {
                 replaceFragment(new HomeLoginFragment());
                 binding.bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu_login);
-            } else {
+            }
+            else {
                 replaceFragment(new HomeFragment());
                 binding.bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu);
             }

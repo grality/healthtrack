@@ -19,6 +19,11 @@
     <string name="home_description">Your app to track your physical activities and stay in shape.</string>
     <string name="maps">Maps</string>
     <string name="welcome_back">Welcome Back</string>
+    <string name="notes">Notes</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="ajouter_une_note">Add a Note :</string>
+    <string name="sauvegarder">Save</string>
     <string-array name="languages">
         <item>Francais</item>
         <item>English</item>
