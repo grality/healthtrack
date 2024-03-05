@@ -1,4 +1,4 @@
-package com.example.healthtrack.utils;
+package com.example.healthtrack.models;
 
 import java.util.ArrayList;
 import java.util.Date;

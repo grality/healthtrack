@@ -11,7 +11,7 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import com.example.healthtrack.R;
-import com.example.healthtrack.utils.Note;
+import com.example.healthtrack.models.Note;
 import com.example.healthtrack.utils.NotesAdapter;
 
 /**

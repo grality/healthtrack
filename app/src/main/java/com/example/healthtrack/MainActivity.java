@@ -16,6 +16,7 @@
 
     import com.example.healthtrack.databinding.ActivityMainBinding;
     import com.example.healthtrack.fragments.AccountFragment;
+    import com.example.healthtrack.fragments.ExercisesFragment;
     import com.example.healthtrack.fragments.HomeFragment;
     import com.example.healthtrack.fragments.HomeLoginFragment;
     import com.example.healthtrack.fragments.LoginFragment;
@@ -60,6 +61,8 @@
                     replaceFragment(new MapFragment());
                 } else if (itemId == R.id.action_notes) {
                     replaceFragment(new NotesFragment());
+                } else if (itemId == R.id.action_exercices) {
+                    replaceFragment(new ExercisesFragment());
                 }
                 return true;
             });

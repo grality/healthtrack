@@ -28,4 +28,10 @@
         <item>Francais</item>
         <item>Anglais</item>
     </string-array>
+    <string name="category_legs">Jambes</string>
+    <string name="category_glutes">Fessiers</string>
+    <string name="category_abs">Abdos</string>
+    <string name="category_arms">Bras</string>
+    <string name="category_pecs">Pecs</string>
+    <string name="category_shoulders">Épaules</string>
 </resources>

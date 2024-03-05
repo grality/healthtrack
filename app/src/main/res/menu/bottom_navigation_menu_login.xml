@@ -5,11 +5,15 @@
         android:icon="@drawable/baseline_home_24"
         android:title="@string/menu_home" />
     <item
-        android:id="@+id/action_account"
-        android:icon="@drawable/baseline_account_24"
-        android:title="@string/menu_account" />
+        android:id="@+id/action_exercices"
+        android:icon="@drawable/baseline_exercices_24"
+        android:title="Exercices"/>
     <item
         android:id="@+id/action_notes"
         android:icon="@drawable/baseline_notes_24"
         android:title="@string/notes"/>
+    <item
+        android:id="@+id/action_account"
+        android:icon="@drawable/baseline_account_24"
+        android:title="@string/menu_account" />
 </menu>

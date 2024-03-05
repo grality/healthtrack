@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.healthtrack.R;
+import com.example.healthtrack.models.Note;
 
 import java.util.List;
 

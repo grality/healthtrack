@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories">
+        <item>@string/category_legs</item>
+        <item>@string/category_glutes</item>
+        <item>@string/category_abs</item>
+        <item>@string/category_arms</item>
+        <item>@string/category_pecs</item>
+        <item>@string/category_shoulders</item>
+    </string-array>
+</resources>
