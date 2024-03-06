@@ -22,6 +22,7 @@
     import com.example.healthtrack.fragments.LoginFragment;
     import com.example.healthtrack.fragments.MapFragment;
     import com.example.healthtrack.fragments.NotesFragment;
+    import com.example.healthtrack.fragments.ProgressFragment;
     import com.example.healthtrack.fragments.RegisterFragment;
     import com.example.healthtrack.utils.SessionManager;
     import com.google.android.gms.maps.CameraUpdateFactory;
@@ -63,6 +64,8 @@
                     replaceFragment(new NotesFragment());
                 } else if (itemId == R.id.action_exercices) {
                     replaceFragment(new ExercisesFragment());
+                }else if (itemId == R.id.action_progress) {
+                    replaceFragment(new ProgressFragment());
                 }
                 return true;
             });
@@ -105,12 +108,12 @@
         @Override
         protected void onResume() {
             super.onResume();
-            updateMenuVisibility();
-            SessionManager sessionManager = new SessionManager(this);
-            setLocale(this, sessionManager.getLanguagePref());
-            if(!Objects.equals(sessionManager.getLanguagePref(), Locale.getDefault().getLanguage())) {
-                recreate();
-            }
+            //updateMenuVisibility();
+            //SessionManager sessionManager = new SessionManager(this);
+            //setLocale(this, sessionManager.getLanguagePref());
+            //if(!Objects.equals(sessionManager.getLanguagePref(), Locale.getDefault().getLanguage())) {
+            //    recreate();
+            //}
         }
 
         protected void replaceFragment(Fragment fragment) {

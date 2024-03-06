@@ -15,6 +15,8 @@
     <string name="menu_login">Connexion</string>
     <string name="menu_account">Compte</string>
     <string name="menu_register">S\'inscrire</string>
+    <string name="menu_exercise">Exercices</string>
+    <string name="menu_progress">Progrès</string>
     <string name="home_description">Votre application pour suivre vos activités physiques et rester en forme.</string>
     <string name="maps">Carte</string>
     <string name="hello_blank_fragment">Bonjour fragment vide</string>
@@ -34,4 +36,5 @@
     <string name="category_arms">Bras</string>
     <string name="category_pecs">Pecs</string>
     <string name="category_shoulders">Épaules</string>
+    <string name="buttonPhoto">Prendre une photo</string>
 </resources>

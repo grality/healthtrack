@@ -7,11 +7,15 @@
     <item
         android:id="@+id/action_exercices"
         android:icon="@drawable/baseline_exercices_24"
-        android:title="Exercices"/>
+        android:title="@string/menu_exercise"/>
     <item
         android:id="@+id/action_notes"
         android:icon="@drawable/baseline_notes_24"
         android:title="@string/notes"/>
+    <item
+        android:id="@+id/action_progress"
+        android:icon="@drawable/baseline_progress_24"
+        android:title="@string/menu_progress"/>
     <item
         android:id="@+id/action_account"
         android:icon="@drawable/baseline_account_24"
