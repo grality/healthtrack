@@ -12,7 +12,7 @@
         android:text="@string/buttonPhoto" />
 
     <ListView
-        android:id="@+id/photo_list"
+        android:id="@+id/photoListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/btn_take_photo"

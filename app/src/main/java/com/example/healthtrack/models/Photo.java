@@ -2,14 +2,14 @@ package com.example.healthtrack.models;
 
 import android.graphics.Bitmap;
 
-public class Progress {
+public class Photo {
     private int id; // Identifiant de la progression
     private Bitmap photo; // Image de la progression
     private String description; // Description de la progression
     private String date; // Date de la progression
 
     // Constructeur
-    public Progress(Bitmap photo, String description, String date) {
+    public Photo(Bitmap photo, String description, String date) {
         this.photo = photo;
         this.description = description;
         this.date = date;

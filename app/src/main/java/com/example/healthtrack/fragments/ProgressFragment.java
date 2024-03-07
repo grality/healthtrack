@@ -7,10 +7,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,14 +18,13 @@ import android.widget.ListView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.healthtrack.Adapter.PhotoAdapter;
 import com.example.healthtrack.R;
+import com.example.healthtrack.models.Photo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +36,11 @@ public class ProgressFragment extends Fragment {
 
     private Button btnTakePhoto;
     private ListView photoListView;
-    private List<Bitmap> photoList;
-    private ArrayAdapter<Bitmap> photoAdapter;
+    private List<Photo> photoList;
+    private PhotoAdapter photoAdapter;
 
-    public ProgressFragment() {}
+    public ProgressFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,10 +48,10 @@ public class ProgressFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_progress, container, false);
 
         btnTakePhoto = view.findViewById(R.id.btn_take_photo);
-        photoListView = view.findViewById(R.id.photo_list);
+        photoListView = view.findViewById(R.id.photoListView);
 
         photoList = new ArrayList<>();
-        photoAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, photoList);
+        photoAdapter = new PhotoAdapter(getContext(), photoList);
         photoListView.setAdapter(photoAdapter);
 
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
@@ -73,14 +73,14 @@ public class ProgressFragment extends Fragment {
         }
     }
 
-    private ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(),
+    private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(),
             isGranted -> {
                 if (isGranted) {
                     startCameraIntent();
                 }
             });
 
-    private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
@@ -118,9 +118,17 @@ public class ProgressFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String description = editTextDescription.getText().toString();
-                photoList.add(imageBitmap);
-                photoAdapter.notifyDataSetChanged();
-                dialog.dismiss();
+                String currentDate = "date à remplacer par la vraie date";
+
+                if (imageBitmap != null) {
+                    Photo photo = new Photo(imageBitmap, description, currentDate);
+                    photoAdapter.add(photo);
+                    photoAdapter.notifyDataSetChanged();
+                    dialog.dismiss();
+                } else {
+                    Log.d("Progress", "ImageBitmap is null");
+                    // Gérer le cas où l'image est null (peut-être afficher un message à l'utilisateur)
+                }
             }
         });
 
