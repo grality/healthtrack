@@ -1,10 +1,15 @@
 package com.example.healthtrack.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Switch;
 
 import androidx.fragment.app.Fragment;
 
@@ -31,6 +36,12 @@ public class ExercisesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private List<Exercise> baseExercises;
+    private List<Exercise> exercises;
+
+    private String selectedMuscleType;
+
 
     public ExercisesFragment() {
         // Required empty public constructor
@@ -71,7 +82,9 @@ public class ExercisesFragment extends Fragment {
         ListView listView = view.findViewById(R.id.listViewExercises);
 
         // Générer une liste d'exercices de test
-        List<Exercise> exercises = generateSampleExercises();
+
+        baseExercises= generateSampleExercises();
+        exercises = new ArrayList<>(baseExercises);
 
         // Créer un adaptateur pour la liste d'exercices
         ExerciseAdapter adapter = new ExerciseAdapter(requireContext(), exercises);
@@ -79,15 +92,54 @@ public class ExercisesFragment extends Fragment {
         // Définir l'adaptateur sur la ListView
         listView.setAdapter(adapter);
 
+        Spinner spinnerMuscleType = (Spinner) view.findViewById(R.id.spinner_categories);
+
+
+
+        spinnerMuscleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                selectedMuscleType = adapterView.getItemAtPosition(position).toString();
+                Log.d("MuscleType", selectedMuscleType);
+
+                if (!"Tous les muscles".equals(selectedMuscleType)) {
+                    exercises = new ArrayList<>(baseExercises);
+                    List<Exercise> filteredExercises = filterExercisesByMuscleType(exercises, selectedMuscleType);
+                    adapter.updateList(filteredExercises);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchFavorite = (Switch) view.findViewById(R.id.switchFavorite);
+        switchFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            adapter.setShowFavoriteOnly(isChecked);
+            adapter.resetList();
+            List<Exercise> filteredExercises = filterExercisesByMuscleType(exercises, selectedMuscleType);
+            adapter.updateList(filteredExercises);
+            adapter.notifyDataSetChanged();
+        });
+
         return view;
+    }
+    private List<Exercise> filterExercisesByMuscleType(List<Exercise> allExercises, String muscleType) {
+        List<Exercise> filteredExercises = new ArrayList<>();
+        for (Exercise exercise : allExercises) {
+            if (muscleType.equals(exercise.getMuscleType())) {
+                filteredExercises.add(exercise);
+            }
+        }
+        return filteredExercises;
     }
 
     // Méthode pour générer des exercices de test
     private List<Exercise> generateSampleExercises() {
         List<Exercise> exercises = new ArrayList<>();
-        exercises.add(new Exercise("Squats", "Exercice pour les jambes", "Jambes", R.drawable.baseline_exercices_24));
-        exercises.add(new Exercise("Push-ups", "Exercice pour les bras et les pectoraux", "Bras, Pecs", R.drawable.baseline_exercices_24));
-        exercises.add(new Exercise("Crunches", "Exercice pour les abdominaux", "Abdos", R.drawable.baseline_exercices_24));
+        exercises.add(new Exercise("Squats", "Exercice pour les jambes", "Legs", R.drawable.baseline_exercices_24,true));
+        exercises.add(new Exercise("Push-ups", "Exercice pour les bras et les pectoraux", "Pecs", R.drawable.baseline_exercices_24,true));
+        exercises.add(new Exercise("Crunches", "Exercice pour les abdominaux", "Abs", R.drawable.baseline_exercices_24,false));
         return exercises;
     }
 }

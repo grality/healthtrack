@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="UseSwitchCompatOrMaterialXml">
 
     <Spinner
         android:id="@+id/spinner_categories"
         android:layout_width="261dp"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:background="#FFFFFF"
         android:entries="@array/categories" />
 
-    <!-- Placer la ListView en dessous du Spinner -->
     <ListView
         android:id="@+id/listViewExercises"
         android:layout_width="match_parent"
-        android:layout_height="656dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/spinner_categories"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="16dp"
         android:background="#FFFFFF" />
+
+    <Switch
+        android:id="@+id/switchFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/listViewExercises"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:layout_marginTop="29dp"
+        android:layout_toEndOf="@+id/spinner_categories"
+        android:text="Switch" />
 
 </RelativeLayout>

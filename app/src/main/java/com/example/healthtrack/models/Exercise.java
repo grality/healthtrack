@@ -6,11 +6,18 @@ public class Exercise {
     private String muscleType;
     private int imageResource;
 
-    public Exercise(String title, String description, String muscleType, int imageResource) {
+    private boolean favorite;
+
+    public Exercise(String title, String description, String muscleType, int imageResource, boolean favorite) {
         this.title = title;
         this.description = description;
         this.muscleType = muscleType;
         this.imageResource = imageResource;
+        this.favorite = favorite;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
     }
 
     public String getTitle() {
