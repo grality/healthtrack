@@ -21,7 +21,9 @@ import java.util.List;
 
 import com.example.healthtrack.Adapter.ExerciseAdapter;
 import com.example.healthtrack.R;
+import com.example.healthtrack.database.FavorisDatabaseHelper;
 import com.example.healthtrack.models.Exercise;
+import com.example.healthtrack.utils.SessionManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,8 +59,7 @@ public class ExercisesFragment extends Fragment {
         ListView listView = view.findViewById(R.id.listViewExercises);
 
         // Générer une liste d'exercices de test
-
-        baseExercises= generateSampleExercises();
+        baseExercises = generateSampleExercises();
         exercises = new ArrayList<>(baseExercises);
 
         // Créer un adaptateur pour la liste d'exercices
@@ -67,7 +68,7 @@ public class ExercisesFragment extends Fragment {
         // Définir l'adaptateur sur la ListView
         listView.setAdapter(adapter);
 
-        Spinner spinnerMuscleType = (Spinner) view.findViewById(R.id.spinner_categories);
+        Spinner spinnerMuscleType = view.findViewById(R.id.spinner_categories);
 
         spinnerMuscleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -75,9 +76,12 @@ public class ExercisesFragment extends Fragment {
                 selectedMuscleType = adapterView.getItemAtPosition(position).toString();
                 Log.d("MuscleType", selectedMuscleType);
 
-                if (!"Tous les muscles".equals(selectedMuscleType)) {
+                if (!"Toutes les categories".equals(selectedMuscleType) && !"All the categories".equals(selectedMuscleType)) {
                     List<Exercise> filteredExercises = filterExercisesByMuscleType(baseExercises, selectedMuscleType);
                     adapter.updateList(filteredExercises);
+                } else {
+                    // Afficher tous les exercices si "Toutes les catégories" est sélectionné
+                    adapter.updateList(baseExercises);
                 }
             }
 
@@ -85,17 +89,27 @@ public class ExercisesFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        Switch switchFavorite = (Switch) view.findViewById(R.id.switchFavorite);
+
+        Switch switchFavorite = view.findViewById(R.id.switchFavorite);
         switchFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            adapter.setShowFavoriteOnly(isChecked);
-            Log.d("Switch", String.valueOf(isChecked));
-            List<Exercise> filteredExercises = filterExercisesByMuscleType(adapter.getmFilteredExercises(), selectedMuscleType);
-            adapter.updateList(filteredExercises);
-            adapter.notifyDataSetChanged();
+            if (isChecked) {
+                // Afficher uniquement les exercices favoris
+                List<Exercise> favoriteExercises = getFavoriteExercises(exercises);
+                adapter.updateList(favoriteExercises);
+            } else {
+                // Afficher tous les exercices
+                if (!"Toutes les categories".equals(selectedMuscleType) && !"All the categories".equals(selectedMuscleType)) {
+                    List<Exercise> filteredExercises = filterExercisesByMuscleType(baseExercises, selectedMuscleType);
+                    adapter.updateList(filteredExercises);
+                } else {
+                    adapter.updateList(baseExercises);
+                }
+            }
         });
 
         return view;
     }
+
     private List<Exercise> filterExercisesByMuscleType(List<Exercise> allExercises, String muscleType) {
         List<Exercise> filteredExercises = new ArrayList<>();
         for (Exercise exercise : allExercises) {
@@ -109,10 +123,27 @@ public class ExercisesFragment extends Fragment {
     // Méthode pour générer des exercices de test
     private List<Exercise> generateSampleExercises() {
         List<Exercise> exercises = new ArrayList<>();
-        exercises.add(new Exercise("Squats", "Exercice pour les jambes", "Legs",R.drawable.squats,true));
-        exercises.add(new Exercise("Squats", "Exercice pour les jambes", "Legs",R.drawable.squats,true));
-        exercises.add(new Exercise("Push-ups", "Exercice pour les bras et les pectoraux", "Pecs", R.drawable.pecs_decline,true));
-        exercises.add(new Exercise("Crunches", "Exercice pour les abdominaux", "Abs", R.drawable.crunch,false));
+        FavorisDatabaseHelper favorisDatabaseHelper = new FavorisDatabaseHelper(getContext());
+        SessionManager sessionManager = new SessionManager(getContext());
+        List<Integer> favoriteExerciseIds = favorisDatabaseHelper.getFavoriteExercises(sessionManager.getEmail());
+
+        exercises.add(new Exercise("Squats", "Exercice pour les jambes", getString(R.string.category_legs),R.drawable.squats,favoriteExerciseIds.contains(1), 1));
+        exercises.add(new Exercise("Push-ups", "Exercice pour les bras et les pectoraux", getString(R.string.category_pecs), R.drawable.pecs_decline,favoriteExerciseIds.contains(2), 2));
+        exercises.add(new Exercise("Crunches", "Exercice pour les abdominaux", getString(R.string.category_abs), R.drawable.crunch,favoriteExerciseIds.contains(3),3));
+
         return exercises;
+    }
+
+
+
+    // Méthode pour obtenir les exercices favoris
+    private List<Exercise> getFavoriteExercises(List<Exercise> exercises) {
+        List<Exercise> favoriteExercises = new ArrayList<>();
+        for (Exercise exercise : exercises) {
+            if (exercise.isFavorite()) {
+                favoriteExercises.add(exercise);
+            }
+        }
+        return favoriteExercises;
     }
 }

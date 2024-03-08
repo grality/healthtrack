@@ -30,6 +30,7 @@
         <item>Francais</item>
         <item>Anglais</item>
     </string-array>
+    <string name="category_all">Toutes les categories</string>
     <string name="category_legs">Jambes</string>
     <string name="category_glutes">Fessiers</string>
     <string name="category_abs">Abdos</string>

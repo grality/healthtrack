@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="categories">
+        <item>@string/category_all</item>
         <item>@string/category_legs</item>
         <item>@string/category_glutes</item>
         <item>@string/category_abs</item>

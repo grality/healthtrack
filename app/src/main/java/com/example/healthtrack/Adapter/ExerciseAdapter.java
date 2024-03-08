@@ -13,7 +13,9 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.example.healthtrack.R;
+import com.example.healthtrack.database.FavorisDatabaseHelper;
 import com.example.healthtrack.models.Exercise;
+import com.example.healthtrack.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
     private Context mContext;
     private List<Exercise> mExercises;
     private List<Exercise> mFilteredExercises;
+    private FavorisDatabaseHelper favorisDatabaseHelper;
     private boolean showFavoriteOnly = false;
 
     public ExerciseAdapter(Context context, List<Exercise> exercises) {
@@ -74,7 +77,7 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
         }
 
         if (!mFilteredExercises.isEmpty() && position < mFilteredExercises.size()) {
-            Exercise currentExercise = mFilteredExercises.get(position);
+            final Exercise currentExercise = mFilteredExercises.get(position);
 
             TextView titleTextView = listItem.findViewById(R.id.titleTextView);
             titleTextView.setText(currentExercise.getTitle());
@@ -85,8 +88,37 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
             TextView muscleGroupsTextView = listItem.findViewById(R.id.muscleGroupsTextView);
             muscleGroupsTextView.setText(currentExercise.getMuscleType());
 
-            ImageView imageView = listItem.findViewById(R.id.imageView);
+            final ImageView starImageView = listItem.findViewById(R.id.starImageView);
 
+            // Changer la couleur de l'étoile en fonction de l'état de favori de l'exercice
+            if (currentExercise.isFavorite()) {
+                starImageView.setImageResource(R.drawable.ic_star);
+            } else {
+                starImageView.setImageResource(R.drawable.ic_star_empty);
+            }
+
+            favorisDatabaseHelper = new FavorisDatabaseHelper(getContext());
+            SessionManager sessionManager = new SessionManager(getContext());
+
+            // OnClickListener pour l'étoile
+            starImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Inverser l'état de favori de l'exercice
+                    currentExercise.setFavorite(!currentExercise.isFavorite());
+                    if (currentExercise.isFavorite()) {
+                        favorisDatabaseHelper.addFavoriteExercise(sessionManager.getEmail(), currentExercise.getId());
+                        starImageView.setImageResource(R.drawable.ic_star);
+                    } else {
+                        favorisDatabaseHelper.removeFavoriteExercise(sessionManager.getEmail(), currentExercise.getId());
+                        starImageView.setImageResource(R.drawable.ic_star_empty);
+                    }
+                    // Mettre à jour l'affichage
+                    notifyDataSetChanged();
+                }
+            });
+
+            ImageView imageView = listItem.findViewById(R.id.imageView);
             Glide.with(mContext)
                     .asGif()
                     .load(currentExercise.getImageResource())

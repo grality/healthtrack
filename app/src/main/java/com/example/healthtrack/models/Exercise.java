@@ -12,12 +12,13 @@ public class Exercise {
 
     private boolean favorite;
 
-    public Exercise(String title, String description, String muscleType, int imageResource, boolean favorite) {
+    public Exercise(String title, String description, String muscleType, int imageResource, boolean favorite, int id) {
         this.title = title;
         this.description = description;
         this.muscleType = muscleType;
         this.imageResource = imageResource;
         this.favorite = favorite;
+        this.id = id;
     }
 
     public Exercise() {
@@ -63,7 +64,10 @@ public class Exercise {
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
-
-    public void setId(int anInt) {
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }

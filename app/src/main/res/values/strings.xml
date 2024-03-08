@@ -29,6 +29,7 @@
         <item>Francais</item>
         <item>English</item>
     </string-array>
+    <string name="category_all">All the categories</string>
     <string name="category_legs">Legs</string>
     <string name="category_glutes">Glutes</string>
     <string name="category_abs">Abs</string>
