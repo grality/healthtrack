@@ -1,5 +1,7 @@
 package com.example.healthtrack.models;
 
+import android.graphics.drawable.Drawable;
+
 public class Exercise {
     private String title;
     private String description;

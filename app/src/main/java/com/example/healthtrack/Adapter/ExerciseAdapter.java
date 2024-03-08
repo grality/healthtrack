@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.example.healthtrack.R;
 import com.example.healthtrack.models.Exercise;
 
@@ -28,7 +29,7 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
         super(context, 0, exercises);
         mContext = context;
         mExercises = exercises;
-        mFilteredExercises = new ArrayList<Exercise>();
+        mFilteredExercises = new ArrayList<>();
     }
 
     public void updateList(List<Exercise> newExercises) {
@@ -85,10 +86,21 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
             muscleGroupsTextView.setText(currentExercise.getMuscleType());
 
             ImageView imageView = listItem.findViewById(R.id.imageView);
-            imageView.setImageResource(currentExercise.getImageResource());
+
+            Glide.with(mContext)
+                    .asGif()
+                    .load(currentExercise.getImageResource())
+                    .into(imageView);
         }
 
         return listItem;
     }
 
+    public List<Exercise> getmExercises() {
+        return mExercises;
+    }
+
+    public List<Exercise> getmFilteredExercises() {
+        return mFilteredExercises;
+    }
 }
