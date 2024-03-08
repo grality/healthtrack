@@ -17,6 +17,7 @@ import androidx.core.app.NotificationCompat;
 import com.example.healthtrack.MainActivity;
 import com.example.healthtrack.R;
 import com.example.healthtrack.database.PhotoDatabaseHelper;
+import com.example.healthtrack.utils.SessionManager;
 
 import java.util.Calendar;
 
@@ -46,7 +47,8 @@ public class CheckImageService extends Service {
         calendar.add(Calendar.HOUR_OF_DAY, -24);
         long twentyFourHoursAgo = calendar.getTimeInMillis();
 
-        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM photos WHERE date > ?", new String[]{String.valueOf(twentyFourHoursAgo)});
+        SessionManager sessionManager = new SessionManager(this);
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM photos WHERE date > ? AND email = ?", new String[]{String.valueOf(twentyFourHoursAgo), sessionManager.getEmail()});
         cursor.moveToFirst();
         int count = cursor.getInt(0);
         cursor.close();

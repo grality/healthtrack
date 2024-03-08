@@ -20,6 +20,7 @@ public class PhotoDatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_IMAGE = "image_data";
     private static final String KEY_DATE = "date";
+    private static final String KEY_EMAIL = "email";
 
     public PhotoDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,7 +32,8 @@ public class PhotoDatabaseHelper extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY,"
                 + KEY_DESCRIPTION + " TEXT,"
                 + KEY_IMAGE + " BLOB,"
-                + KEY_DATE + " TEXT" + ")";
+                + KEY_DATE + " TEXT,"
+                + KEY_EMAIL + " TEXT" + ")";
         db.execSQL(CREATE_PHOTOS_TABLE);
     }
 
@@ -41,21 +43,22 @@ public class PhotoDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addPhoto(Photo photo) {
+    public void addPhoto(Photo photo, String userEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_DESCRIPTION, photo.getDescription());
         values.put(KEY_IMAGE, Utils.getBytes(photo.getPhoto()));
         values.put(KEY_DATE, photo.getDate());
+        values.put(KEY_EMAIL, userEmail);
         db.insert(TABLE_PHOTOS, null, values);
         db.close();
     }
 
-    public List<Photo> getAllPhotos() {
+    public List<Photo> getAllPhotos(String userEmail) {
         List<Photo> photoList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + TABLE_PHOTOS + " ORDER BY " + KEY_DATE + " DESC";
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        String selectQuery = "SELECT * FROM " + TABLE_PHOTOS + " WHERE " + KEY_EMAIL + " = ? ORDER BY " + KEY_DATE + " DESC";
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{userEmail});
         if (cursor.moveToFirst()) {
             do {
                 Photo photo = new Photo();

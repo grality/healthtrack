@@ -26,6 +26,7 @@ import com.example.healthtrack.Adapter.PhotoAdapter;
 import com.example.healthtrack.R;
 import com.example.healthtrack.database.PhotoDatabaseHelper;
 import com.example.healthtrack.models.Photo;
+import com.example.healthtrack.utils.SessionManager;
 import com.example.healthtrack.utils.Utils;
 
 import java.util.ArrayList;
@@ -66,7 +67,8 @@ public class ProgressFragment extends Fragment {
             }
         });
 
-        List<Photo> dbPhotos = dbHelper.getAllPhotos();
+        SessionManager sessionManager = new SessionManager(getContext());
+        List<Photo> dbPhotos = dbHelper.getAllPhotos(sessionManager.getEmail());
 
         photoList.clear();
         photoList.addAll(dbPhotos);
@@ -133,7 +135,8 @@ public class ProgressFragment extends Fragment {
 
                 if (imageBitmap != null) {
                     Photo photo = new Photo(imageBitmap, description, currentDate);
-                    dbHelper.addPhoto(photo);
+                    SessionManager sessionManager = new SessionManager(getContext());
+                    dbHelper.addPhoto(photo, sessionManager.getEmail());
                     photoList.add(0, photo);
                     photoAdapter.notifyDataSetChanged();
                     dialog.dismiss();
