@@ -15,6 +15,10 @@ public class Photo {
         this.date = date;
     }
 
+    public Photo() {
+
+    }
+
     // Méthodes getter et setter pour chaque attribut
     public int getId() {
         return id;

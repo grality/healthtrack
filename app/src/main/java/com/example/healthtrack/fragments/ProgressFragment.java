@@ -24,7 +24,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.healthtrack.Adapter.PhotoAdapter;
 import com.example.healthtrack.R;
+import com.example.healthtrack.database.PhotoDatabaseHelper;
 import com.example.healthtrack.models.Photo;
+import com.example.healthtrack.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,7 @@ public class ProgressFragment extends Fragment {
     private ListView photoListView;
     private List<Photo> photoList;
     private PhotoAdapter photoAdapter;
+    private PhotoDatabaseHelper dbHelper;
 
     public ProgressFragment() {
     }
@@ -54,12 +57,20 @@ public class ProgressFragment extends Fragment {
         photoAdapter = new PhotoAdapter(getContext(), photoList);
         photoListView.setAdapter(photoAdapter);
 
+        dbHelper = new PhotoDatabaseHelper(getContext());
+
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
             }
         });
+
+        List<Photo> dbPhotos = dbHelper.getAllPhotos();
+
+        photoList.clear();
+        photoList.addAll(dbPhotos);
+        photoAdapter.notifyDataSetChanged();
 
         return view;
     }
@@ -118,14 +129,16 @@ public class ProgressFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String description = editTextDescription.getText().toString();
-                String currentDate = "date à remplacer par la vraie date";
+                String currentDate = Utils.getCurrentDate();
 
                 if (imageBitmap != null) {
                     Photo photo = new Photo(imageBitmap, description, currentDate);
-                    photoAdapter.add(photo);
+                    dbHelper.addPhoto(photo);
+                    photoList.add(0, photo);
                     photoAdapter.notifyDataSetChanged();
                     dialog.dismiss();
-                } else {
+                }
+                else {
                     Log.d("Progress", "ImageBitmap is null");
                     // Gérer le cas où l'image est null (peut-être afficher un message à l'utilisateur)
                 }

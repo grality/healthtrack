@@ -2,18 +2,21 @@ package com.example.healthtrack.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.healthtrack.R;
+import com.example.healthtrack.database.PhotoDatabaseHelper;
 import com.example.healthtrack.models.Photo;
 
 import java.util.List;
@@ -21,35 +24,70 @@ import java.util.List;
 public class PhotoAdapter extends ArrayAdapter<Photo> {
     private List<Photo> photoList;
     private Context context;
+    private PhotoDatabaseHelper dbHelper;
 
     public PhotoAdapter(Context context, List<Photo> photoList) {
-        super(context, 0);
+        super(context, 0, photoList);
         this.context = context;
         this.photoList = photoList;
+        this.dbHelper = new PhotoDatabaseHelper(getContext());
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ImageView imageView;
-        TextView imageDescription;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_item_photo, parent, false);
-            imageView = convertView.findViewById(R.id.photo_image);
-            imageDescription = convertView.findViewById(R.id.photo_description);
-            convertView.setTag(imageView);
-            convertView.setTag(imageDescription);
-        } else {
-            imageView = (ImageView) convertView.getTag();
-            imageDescription =(TextView) convertView.getTag();
         }
 
-        Photo photo = getItem(position);
+        ImageView imageView = convertView.findViewById(R.id.photo_image);
+        TextView descriptionTextView = convertView.findViewById(R.id.photo_description);
+        TextView dateTextView = convertView.findViewById(R.id.photo_date);
 
-        imageView.setImageBitmap(photo.getPhoto());
-        imageDescription.setText(photo.getDescription());
+        Photo currentPhoto = photoList.get(position);
+        imageView.setImageBitmap(currentPhoto.getPhoto());
+        descriptionTextView.setText(currentPhoto.getDescription());
+        dateTextView.setText(currentPhoto.getDate());
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFullImage(photoList.get(position).getPhoto(), position);
+            }
+        });
 
         return convertView;
     }
-}
 
+    private void showFullImage(Bitmap imageBitmap,int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.display_photo, null);
+        ImageView fullImageView = dialogView.findViewById(R.id.display_photo_image);
+        Button deleteButton = dialogView.findViewById(R.id.btn_delete_photo);
+        Button hideButton = dialogView.findViewById(R.id.btn_hide_photo);
+
+        fullImageView.setImageBitmap(imageBitmap);
+
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.deletePhoto(photoList.get(position).getId());
+                photoList.remove(photoList.get(position));
+                notifyDataSetChanged();
+                dialog.dismiss();
+            }
+        });
+
+        hideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+}

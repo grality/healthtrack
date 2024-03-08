@@ -1,7 +1,5 @@
     package com.example.healthtrack;
 
-    import static com.example.healthtrack.utils.Utils.setLocale;
-
     import android.os.Bundle;
     import android.util.Log;
     import android.view.Menu;
@@ -30,9 +28,6 @@
     import com.google.android.gms.maps.OnMapReadyCallback;
     import com.google.android.gms.maps.model.LatLng;
     import com.google.android.gms.maps.model.MarkerOptions;
-
-    import java.util.Locale;
-    import java.util.Objects;
 
     public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
         private ActivityMainBinding binding;
@@ -72,16 +67,12 @@
 
 
 
-                Toolbar toolbar = findViewById(R.id.toolbar);
-                setSupportActionBar(toolbar);
-
-                ActionBar actionBar = getSupportActionBar();
-                if (actionBar != null) {
-                    actionBar.setDisplayShowTitleEnabled(true);
-                    actionBar.setTitle("HealthTrack");
-                    actionBar.setLogo(R.drawable.logo_health_track);
-                    actionBar.setDisplayUseLogoEnabled(true);
-                }
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayShowTitleEnabled(false);
+            }
         }
 
 
