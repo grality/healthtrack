@@ -15,16 +15,13 @@
         android:text="@string/ajouter_une_note"
         android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/editTextTitle"
+    <TextView
+        android:id="@+id/textNoteTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:autofillHints="Title"
-        android:ems="10"
+        android:textSize="20sp"
         android:gravity="center"
-        android:hint="@string/title"
-        android:inputType="text"
         tools:ignore="LabelFor" />
 
     <EditText

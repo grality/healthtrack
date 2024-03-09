@@ -1,6 +1,7 @@
 package com.example.healthtrack.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.healthtrack.R;
 import com.example.healthtrack.database.FavorisDatabaseHelper;
+import com.example.healthtrack.fragments.NotesFragment;
 import com.example.healthtrack.models.Exercise;
 import com.example.healthtrack.utils.SessionManager;
 
@@ -117,6 +120,21 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
                     notifyDataSetChanged();
                 }
             });
+
+            listItem.setOnClickListener(v -> {
+                NotesFragment notesFragment = new NotesFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("exercise_title", currentExercise.getTitle());
+                notesFragment.setArguments(bundle);
+
+                ((AppCompatActivity) mContext).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, notesFragment)
+                        .addToBackStack(null)
+                        .commit();
+            });
+
 
             ImageView imageView = listItem.findViewById(R.id.imageView);
             Glide.with(mContext)

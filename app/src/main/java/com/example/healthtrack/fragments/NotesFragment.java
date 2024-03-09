@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -27,8 +28,11 @@ public class NotesFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private ListView noteListView;
-    private EditText editTextTitle;
     private EditText editTextDesc;
+
+    private EditText editTextSets;
+
+    private EditText editTextReps;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -75,19 +79,23 @@ public class NotesFragment extends Fragment {
         noteListView.setAdapter(notesAdapter);
     }
 
-    public void newNote(){
-        String title = editTextTitle.getText().toString();
+    public void newNote(String exerciceTitle) {
         String desc = editTextDesc.getText().toString();
+        String sets = editTextSets.getText().toString();
+        String reps = editTextReps.getText().toString();
+
+
 
         int nextId = Note.noteArrayList.size() + 1;
-        Note newNote = new Note(nextId, title, desc);
+
+
+        Note newNote = new Note(nextId, exerciceTitle, desc,sets,reps);
 
         Note.noteArrayList.add(newNote);
 
         NotesAdapter notesAdapter = new NotesAdapter(getContext(), Note.noteArrayList);
         noteListView.setAdapter(notesAdapter);
 
-        editTextTitle.setText("");
         editTextDesc.setText("");
     }
 
@@ -99,13 +107,24 @@ public class NotesFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_notes,container,false);
 
+        String exerciceTitle;
+        if (getArguments() != null) {
+            exerciceTitle = getArguments().getString("exercise_title","");
+        } else {
+            exerciceTitle = null;
+        }
+
+        TextView noteTitle = rootView.findViewById(R.id.textNoteTitle);
+        noteTitle.setText(exerciceTitle);
+
         noteListView = rootView.findViewById(R.id.notesListView);
-        editTextTitle = rootView.findViewById(R.id.editTextTitle);
         editTextDesc = rootView.findViewById(R.id.editTextDesc);
+        editTextSets = rootView.findViewById(R.id.editTextNombreSets);
+        editTextReps = rootView.findViewById(R.id.editTextNombreReps);
         Button noteSaveBtn = rootView.findViewById(R.id.noteSaveBtn);
 
         if (noteSaveBtn != null) {
-            noteSaveBtn.setOnClickListener(v -> newNote());
+            noteSaveBtn.setOnClickListener(v -> newNote(exerciceTitle));
         }
 
         setNoteAdapter();

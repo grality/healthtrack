@@ -31,10 +31,15 @@ public class NotesAdapter extends ArrayAdapter<Note> {
 
         TextView title = convertView.findViewById(R.id.cellTitle);
         TextView desc = convertView.findViewById(R.id.cellDesc);
+        TextView noteSets = convertView.findViewById(R.id.cellSets);
+        TextView noteReps = convertView.findViewById(R.id.cellReps);
+
 
 
         title.setText(note.getTitle());
         desc.setText(note.getDescription());
+        noteSets.setText(note.getNombreSets());
+        noteReps.setText(note.getNombreReps());
 
         return convertView;
     }

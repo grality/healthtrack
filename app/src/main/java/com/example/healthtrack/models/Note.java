@@ -44,15 +44,13 @@ public class Note {
         deleted = null;
     }
 
-    public Note(int id, String title, String description, Exercise exercise) {
+    public Note(int id, String title, String description, String nombreSets, String nombreReps) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.exercise = exercise;
-        deleted = null;
+        this.nombreSets = nombreSets;
+        this.nombreReps = nombreReps;
     }
-
-
 
     public String getTitle() {
         return title;
@@ -76,5 +74,21 @@ public class Note {
 
     public void setDeleted(Date deleted) {
         this.deleted = deleted;
+    }
+
+    public String getNombreSets() {
+        return nombreSets;
+    }
+
+    public void setNombreSets(String nombreSets) {
+        this.nombreSets = nombreSets;
+    }
+
+    public String getNombreReps() {
+        return nombreReps;
+    }
+
+    public void setNombreReps(String nombreReps) {
+        this.nombreReps = nombreReps;
     }
 }
