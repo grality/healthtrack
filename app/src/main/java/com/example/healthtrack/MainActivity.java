@@ -19,7 +19,6 @@
     import com.example.healthtrack.fragments.HomeLoginFragment;
     import com.example.healthtrack.fragments.LoginFragment;
     import com.example.healthtrack.fragments.MapFragment;
-    import com.example.healthtrack.fragments.NotesFragment;
     import com.example.healthtrack.fragments.ProgressFragment;
     import com.example.healthtrack.fragments.RegisterFragment;
     import com.example.healthtrack.utils.SessionManager;
@@ -55,8 +54,6 @@
                     replaceFragment(new AccountFragment());
                 } else if (itemId == R.id.action_map) {
                     replaceFragment(new MapFragment());
-                } else if (itemId == R.id.action_notes) {
-                    replaceFragment(new NotesFragment());
                 } else if (itemId == R.id.action_exercices) {
                     replaceFragment(new ExercisesFragment());
                 }else if (itemId == R.id.action_progress) {

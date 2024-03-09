@@ -44,4 +44,6 @@
     <string name="enter_photo_description">Entrez la description de la photo</string>
     <string name="hide">Cacher</string>
     <string name="delete">Supprimer</string>
+    <string name="nombre_sets">Nombre Sets</string>
+    <string name="nombre_reps">Nombre Reps</string>
 </resources>

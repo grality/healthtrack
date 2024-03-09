@@ -9,8 +9,14 @@ public class Note {
     private int id ;
     private String title;
     private String description;
-
     private Date deleted;
+
+    private Exercise exercise;
+
+    private String nombreSets;
+
+    private String nombreReps;
+
 
     public int getId() {
         return id;
@@ -21,11 +27,14 @@ public class Note {
     }
 
 
-    public Note(int id, String title, String description, Date deleted) {
+    public Note(int id, String title, String description, Exercise exercise, String nombreSets, String nombreReps) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.deleted = deleted;
+        this.deleted = null;
+        this.exercise = exercise;
+        this.nombreSets = nombreSets;
+        this.nombreReps = nombreReps;
     }
 
     public Note(int id, String title, String description) {
@@ -34,6 +43,16 @@ public class Note {
         this.description = description;
         deleted = null;
     }
+
+    public Note(int id, String title, String description, Exercise exercise) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.exercise = exercise;
+        deleted = null;
+    }
+
+
 
     public String getTitle() {
         return title;

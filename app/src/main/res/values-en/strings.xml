@@ -44,4 +44,6 @@
     <string name="enter_photo_description">Enter photo description</string>
     <string name="hide">Hide</string>
     <string name="delete">Delete</string>
+    <string name="nombre_sets">Nombre Sets</string>
+    <string name="nombre_reps">Nombre Reps</string>
 </resources>
