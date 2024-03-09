@@ -12,43 +12,53 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-50dp"
-        tools:layout_editor_absoluteY="-2dp">
+        app:layout_constraintBottom_toTopOf="@id/fragment_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:gravity="start"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:src="@drawable/logo"
-            tools:layout_editor_absoluteX="16dp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/toolbar_title"
+            <ImageView
+                android:id="@+id/logoHealthtrack"
+                android:layout_width="70dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/logo" />
+
+            <LinearLayout
+                android:id="@+id/linearToolbarText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HEALTH TRACK"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:layout_marginStart="5dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@+id/logoHealthtrack">
 
-            <TextView
-                android:id="@+id/toolbar_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="8dp"
-                android:text="Sport is life"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/health_track"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/toolbar_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sport_is_life"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
         </LinearLayout>
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout

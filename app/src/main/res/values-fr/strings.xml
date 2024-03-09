@@ -39,4 +39,9 @@
     <string name="category_shoulders">Épaules</string>
     <string name="buttonPhoto">Prendre une photo</string>
     <string name="favoris">Favoris</string>
+    <string name="health_track">HEALTH TRACK</string>
+    <string name="sport_is_life">Le sport c\'est la vie</string>
+    <string name="enter_photo_description">Entrez la description de la photo</string>
+    <string name="hide">Cacher</string>
+    <string name="delete">Supprimer</string>
 </resources>

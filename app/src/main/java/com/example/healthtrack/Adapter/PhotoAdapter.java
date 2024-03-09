@@ -68,6 +68,14 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
 
         fullImageView.setImageBitmap(imageBitmap);
 
+        fullImageView.setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        ));
+
+        fullImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        fullImageView.setAdjustViewBounds(true);
+
         builder.setView(dialogView);
         AlertDialog dialog = builder.create();
 
