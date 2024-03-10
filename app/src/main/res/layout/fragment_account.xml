@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteX="5dp">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -31,31 +31,37 @@
             <EditText
                 android:id="@+id/editTextUsername"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:hint="@string/username_hint"
+                android:autofillHints="username"
+                android:inputType="text"
                 android:layout_margin="5dp"
                 />
 
             <EditText
                 android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:inputType="textEmailAddress"
+                android:autofillHints="test@domain.com"
                 android:hint="@string/email_hint"
                 android:layout_margin="5dp"/>
 
             <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:hint="@string/password_hint"
+                android:autofillHints="password"
                 android:inputType="textPassword"
                 android:layout_margin="5dp"/>
 
             <EditText
                 android:id="@+id/editTextConfirmPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:hint="@string/confirm_password_hint"
+                android:autofillHints="password"
                 android:inputType="textPassword"
                 android:layout_margin="5dp"/>
 
@@ -74,7 +80,7 @@
             <Spinner
                 android:id="@+id/languageSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:entries="@array/languages"
                 android:layout_margin="5dp"/>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">health track</string>
+    <string name="app_name">Health Track</string>
     <string name="home_welcome_message">Welcome to Health Track</string>
     <string name="email_hint">Email Address</string>
     <string name="password_hint">Password</string>
@@ -46,4 +46,5 @@
     <string name="nombre_sets">Nombre Sets</string>
     <string name="nombre_reps">Nombre Reps</string>
     <string name="muscle_groups">Muscle Groups</string>
+    <string name="connexion">Connexion</string>
 </resources>
