@@ -63,7 +63,7 @@ public class HomeLoginFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         // Récupérer le TextView à partir du layout
         textViewWelcome = view.findViewById(R.id.textViewWelcome);

@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_health_track"
 
-
+        android:hardwareAccelerated="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Healthtrack"
         tools:targetApi="31">
