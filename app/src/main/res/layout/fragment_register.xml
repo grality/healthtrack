@@ -9,10 +9,8 @@
         android:id="@+id/textViewRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/cardView"
         android:text="Register"
         android:textSize="50sp"
-
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
