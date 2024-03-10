@@ -8,12 +8,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.healthtrack.R;
+import com.example.healthtrack.database.NoteDatabaseHelper;
+import com.example.healthtrack.models.Exercise;
 import com.example.healthtrack.models.Note;
-import com.example.healthtrack.utils.NotesAdapter;
+import com.example.healthtrack.Adapter.NotesAdapter;
+import com.example.healthtrack.utils.SessionManager;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +38,7 @@ public class NotesFragment extends Fragment {
     private EditText editTextDesc;
 
     private EditText editTextSets;
+    private NoteDatabaseHelper dbHelper;
 
     private EditText editTextReps;
 
@@ -65,6 +73,7 @@ public class NotesFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
+        dbHelper = new NoteDatabaseHelper(requireContext());
 
 
         if (getArguments() != null) {
@@ -74,8 +83,11 @@ public class NotesFragment extends Fragment {
     }
 
 
-    private void setNoteAdapter() {
-        NotesAdapter notesAdapter = new NotesAdapter(requireContext(), Note.noteArrayList);
+    private void setNoteAdapter(int id) {
+        SessionManager sessionManager = new SessionManager(getContext());
+        List<Note> noteList = dbHelper.getAllNotes(sessionManager.getEmail(), id);
+        Collections.reverse(noteList);
+        NotesAdapter notesAdapter = new NotesAdapter(requireContext(), noteList);
         noteListView.setAdapter(notesAdapter);
     }
 
@@ -84,19 +96,20 @@ public class NotesFragment extends Fragment {
         String sets = editTextSets.getText().toString();
         String reps = editTextReps.getText().toString();
 
+        if (sets.isEmpty() || reps.isEmpty()) {
+            Toast.makeText(getContext(), "Veuillez remplir les champs Sets et Reps", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        Note newNote = new Note(Exercise.getExerciseWithTitle(exerciceTitle).getId(), exerciceTitle, Exercise.getExerciseWithTitle(exerciceTitle), desc,sets,reps);
+        SessionManager sessionManager = new SessionManager(getContext());
+        dbHelper.addNote(newNote, sessionManager.getEmail());
 
-        int nextId = Note.noteArrayList.size() + 1;
-
-
-        Note newNote = new Note(nextId, exerciceTitle, desc,sets,reps);
-
-        Note.noteArrayList.add(newNote);
-
-        NotesAdapter notesAdapter = new NotesAdapter(getContext(), Note.noteArrayList);
-        noteListView.setAdapter(notesAdapter);
+        setNoteAdapter(Exercise.getExerciseWithTitle(exerciceTitle).getId());
 
         editTextDesc.setText("");
+        editTextReps.setText("");
+        editTextSets.setText("");
     }
 
 
@@ -127,7 +140,9 @@ public class NotesFragment extends Fragment {
             noteSaveBtn.setOnClickListener(v -> newNote(exerciceTitle));
         }
 
-        setNoteAdapter();
+        setNoteAdapter(Exercise.getExerciseWithTitle(exerciceTitle).getId());
         return rootView;
     }
+
+
 }

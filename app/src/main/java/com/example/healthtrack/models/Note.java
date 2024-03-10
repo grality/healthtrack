@@ -37,6 +37,10 @@ public class Note {
         this.nombreReps = nombreReps;
     }
 
+    public Note() {
+
+    }
+
     public Note(int id, String title, String description) {
         this.id = id;
         this.title = title;
@@ -44,9 +48,10 @@ public class Note {
         deleted = null;
     }
 
-    public Note(int id, String title, String description, String nombreSets, String nombreReps) {
+    public Note(int id, String title, Exercise exercise, String description, String nombreSets, String nombreReps) {
         this.id = id;
         this.title = title;
+        this.exercise = exercise;
         this.description = description;
         this.nombreSets = nombreSets;
         this.nombreReps = nombreReps;
