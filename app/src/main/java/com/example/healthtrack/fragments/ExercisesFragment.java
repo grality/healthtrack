@@ -130,7 +130,19 @@ public class ExercisesFragment extends Fragment {
         exercises.add(new Exercise("Squats", "Exercice pour les jambes", getString(R.string.category_legs),R.drawable.squats,favoriteExerciseIds.contains(1), 1));
         exercises.add(new Exercise("Push-ups", "Exercice pour les bras et les pectoraux", getString(R.string.category_pecs), R.drawable.pecs_decline,favoriteExerciseIds.contains(2), 2));
         exercises.add(new Exercise("Crunches", "Exercice pour les abdominaux", getString(R.string.category_abs), R.drawable.crunch,favoriteExerciseIds.contains(3),3));
-
+        exercises.add(new Exercise("Développé Arnold Haltère", "Exercice pour les épaules", getString(R.string.category_shoulders), R.drawable.developpe_arnold_haltere_exercice_musculation, favoriteExerciseIds.contains(4), 4));
+        exercises.add(new Exercise("Développé Couché Prise Inversée", "Exercice pour les pectoraux", getString(R.string.category_pecs), R.drawable.developpe_couche_prise_inversee_exercice_musculation, favoriteExerciseIds.contains(5), 5));
+        exercises.add(new Exercise("Dips Barres Parallèles Triceps", "Exercice pour les triceps", getString(R.string.category_arms), R.drawable.dips_barres_paralleles_triceps_musculation, favoriteExerciseIds.contains(6), 6));
+        exercises.add(new Exercise("Écartés Décliné avec Haltères", "Exercice pour les pectoraux", getString(R.string.category_pecs), R.drawable.ecartes_decline_avec_halteres, favoriteExerciseIds.contains(7), 7));
+        exercises.add(new Exercise("Extensions des Mollets avec Partenaire", "Exercice pour les mollets", getString(R.string.category_legs), R.drawable.extensions_des_mollets_avec_partenaire_musculation, favoriteExerciseIds.contains(8), 8));
+        exercises.add(new Exercise("Extension des Mollets Donkey", "Exercice pour les mollets", getString(R.string.category_legs), R.drawable.extension_des_mollets_donkey_musculation, favoriteExerciseIds.contains(9), 9));
+        exercises.add(new Exercise("Face Pull", "Exercice pour les épaules", getString(R.string.category_shoulders), R.drawable.face_pull_exercice_musculation_epaules, favoriteExerciseIds.contains(10), 10));
+        exercises.add(new Exercise("Good Morning Ischio Cuisses Fessiers", "Exercice pour les ischio-jambiers et les fessiers", getString(R.string.category_legs), R.drawable.good_morning_ischio_cuisses_fessiers_musculation, favoriteExerciseIds.contains(11), 11));
+        exercises.add(new Exercise("Leg Curl Allongé Cuisses Ischios", "Exercice pour les cuisses et les ischio-jambiers", getString(R.string.category_legs), R.drawable.leg_curl_allonge_cuisses_ischios_musculation, favoriteExerciseIds.contains(12), 12));
+        exercises.add(new Exercise("Pecs Décliné", "Exercice pour les pectoraux", getString(R.string.category_pecs), R.drawable.pecs_decline, favoriteExerciseIds.contains(13), 13));
+        exercises.add(new Exercise("Presse à Cuisses Inclinée", "Exercice pour les cuisses", getString(R.string.category_legs), R.drawable.presse_a_cuisses_inclinee_musculation, favoriteExerciseIds.contains(14), 14));
+        exercises.add(new Exercise("Relevé Jambes Chaise Romaine Abdominaux", "Exercice pour les abdominaux", getString(R.string.category_abs), R.drawable.releve_jambes_chaise_romaine_abdominaux_musculation, favoriteExerciseIds.contains(15), 15));
+        exercises.add(new Exercise("Roulette Abdominaux", "Exercice pour les abdominaux", getString(R.string.category_abs), R.drawable.roulette_abdominaux_musculation, favoriteExerciseIds.contains(16), 16));
         return exercises;
     }
 
