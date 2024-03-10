@@ -1,5 +1,6 @@
 package com.example.healthtrack.service;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -30,13 +31,28 @@ public class CheckImageService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        checkImages();
+        scheduleNotification();
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    private void scheduleNotification() {
+        Intent intent = new Intent(this, CheckImageService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        long intervalMillis = 60 * 1000;
+
+        if (alarmManager != null) {
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis(),
+                    intervalMillis,
+                    pendingIntent);
+        }
     }
 
     private void checkImages() {

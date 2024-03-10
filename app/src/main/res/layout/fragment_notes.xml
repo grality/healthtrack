@@ -6,66 +6,75 @@
     android:orientation="vertical"
     tools:context=".fragments.NotesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:text="@string/ajouter_une_note"
-        android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/textNoteTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:textSize="20sp"
-        android:gravity="center"
-        tools:ignore="LabelFor" />
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editTextDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:autofillHints="Description"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/description"
-        android:inputType="text"
-        tools:ignore="LabelFor" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:text="@string/ajouter_une_note"
+            android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/editTextNombreSets"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:autofillHints="3"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/nombre_sets"
-        android:inputType="text"
-        tools:ignore="LabelFor" />
-    <EditText
-        android:id="@+id/editTextNombreReps"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:autofillHints="10"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/nombre_reps"
-        android:inputType="text"
-        tools:ignore="LabelFor" />
+        <TextView
+            android:id="@+id/textNoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            tools:ignore="LabelFor" />
 
-    <Button
-        android:id="@+id/noteSaveBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="3dp"
-        android:text="@string/sauvegarder" />
+        <EditText
+            android:id="@+id/editTextDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints="Description"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/description"
+            android:inputType="text"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/editTextNombreSets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints="3"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/nombre_sets"
+            android:inputType="text"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/editTextNombreReps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints="10"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/nombre_reps"
+            android:inputType="text"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/noteSaveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="3dp"
+            android:text="@string/sauvegarder" />
+
+    </LinearLayout>
+
 
 
     <ListView
@@ -75,6 +84,5 @@
         android:layout_margin="3dp"
         android:divider="@color/timberwolf"
         android:dividerHeight="3dp" />
-
 
 </LinearLayout>
