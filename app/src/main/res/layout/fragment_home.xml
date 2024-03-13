@@ -35,6 +35,12 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
+        <Button
+            android:id="@+id/buttonLoginGuest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_guest"
+            android:layout_margin="5dp"/>
 
     </LinearLayout>
 

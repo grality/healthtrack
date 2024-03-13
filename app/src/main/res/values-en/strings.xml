@@ -48,4 +48,7 @@
     <string name="nombre_reps">Nombre Reps</string>
     <string name="muscle_groups">Muscle Groups</string>
     <string name="connexion">Connexion</string>
+    <string name="login_guest">Login as guest</string>
+    <string name="remind">Reminder</string>
+    <string name="remind_evolution">You need to take your daily photo to visually track your physical evolution.</string>
 </resources>

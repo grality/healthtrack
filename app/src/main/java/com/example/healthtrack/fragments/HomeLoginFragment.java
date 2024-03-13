@@ -63,29 +63,23 @@ public class HomeLoginFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_login, container, false);
 
-        // Récupérer le TextView à partir du layout
         textViewWelcome = view.findViewById(R.id.textViewWelcome);
 
-        // Afficher "Welcome Back" suivi du pseudo de l'utilisateur
         displayWelcomeMessage();
 
         return view;
     }
 
     private void displayWelcomeMessage() {
-        // Récupérer le pseudo de l'utilisateur à partir de votre système de gestion de session
         SessionManager sessionManager = new SessionManager(getActivity());
         String username = sessionManager.getUsername();
 
-        // Vérifier si le pseudo de l'utilisateur est disponible
         if (username != null && !username.isEmpty()) {
-            // Afficher "Welcome Back" suivi du pseudo de l'utilisateur dans le TextView
             String welcomeMessage = getString(R.string.welcome_back) + " " + username;
             textViewWelcome.setText(welcomeMessage);
         } else {
-            // Si le pseudo n'est pas disponible, afficher simplement "Welcome Back"
             textViewWelcome.setText(getString(R.string.welcome_back));
         }
     }

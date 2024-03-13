@@ -79,4 +79,23 @@ public class PhotoDatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_PHOTOS, KEY_ID + " = ?", new String[]{String.valueOf(id)});
         db.close();
     }
+
+    public String getLastPhotoDate(String userEmail) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT MAX(" + KEY_DATE + ") FROM " + TABLE_PHOTOS + " WHERE " + KEY_EMAIL + " = ?";
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{userEmail});
+        String lastDate = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            lastDate = cursor.getString(0);
+            cursor.close();
+        }
+        db.close();
+        return lastDate;
+    }
+
+    public void deleteAllPhotosFromUser(String userEmail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_PHOTOS, KEY_EMAIL + " = ?", new String[]{userEmail});
+        db.close();
+    }
 }

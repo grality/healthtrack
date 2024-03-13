@@ -11,8 +11,10 @@ import android.graphics.BitmapFactory;
 import java.io.ByteArrayOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class Utils {
@@ -59,4 +61,21 @@ public class Utils {
     public static Bitmap getImage(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
+
+    public static boolean isMoreThan24HoursAgo(String date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        try {
+            Date pastDate = format.parse(date);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(pastDate); // Utilisez la date passée comme référence
+            calendar.add(Calendar.HOUR_OF_DAY, 24); // Ajoutez 24 heures à la date passée
+            Date twentyFourHoursLater = calendar.getTime(); // Obtenez la nouvelle date
+            return twentyFourHoursLater.before(new Date()); // Vérifiez si la nouvelle date est avant la date actuelle
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 }

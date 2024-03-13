@@ -22,6 +22,9 @@ import android.widget.Toast;
 import com.example.healthtrack.MainActivity;
 import com.example.healthtrack.R;
 import com.example.healthtrack.database.DBHelper;
+import com.example.healthtrack.database.FavorisDatabaseHelper;
+import com.example.healthtrack.database.NoteDatabaseHelper;
+import com.example.healthtrack.database.PhotoDatabaseHelper;
 import com.example.healthtrack.utils.SessionManager;
 import com.example.healthtrack.utils.Utils;
 
@@ -109,6 +112,14 @@ public class AccountFragment extends Fragment {
 
         SessionManager sessionManager = new SessionManager(getActivity());
 
+        if (sessionManager.getEmail().equals("guest")) {
+            editTextUsername.setEnabled(false);
+            editTextEmail.setEnabled(false);
+            editTextPassword.setEnabled(false);
+            editTextConfirmPassword.setEnabled(false);
+            buttonSave.setEnabled(false);
+        }
+
         editTextUsername.setHint(sessionManager.getUsername());
         editTextEmail.setHint(sessionManager.getEmail());
         editTextPassword.setHint("******");
@@ -136,8 +147,9 @@ public class AccountFragment extends Fragment {
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedLanguage = parentView.getItemAtPosition(position).toString();
-                Log.d("test4", String.valueOf(sessionManager.getLanguagePref()));
+
                 Log.d("test5", String.valueOf(selectedLanguage));
+
                 String selectedLanguageCode;
                 if (selectedLanguage.equals("Francais")) {
                     selectedLanguageCode = "fr";
@@ -193,7 +205,6 @@ public class AccountFragment extends Fragment {
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //nothing to do here
                     }
                 });
                 builder.show();
@@ -235,6 +246,12 @@ public class AccountFragment extends Fragment {
 
     private void deleteAccount() {
         SessionManager sessionManager = new SessionManager(getActivity());
+        NoteDatabaseHelper noteDatabaseHelper = new NoteDatabaseHelper(getActivity());
+        PhotoDatabaseHelper photoDatabaseHelper = new PhotoDatabaseHelper(getActivity());
+        FavorisDatabaseHelper favorisDatabaseHelper = new FavorisDatabaseHelper(getActivity());
+        noteDatabaseHelper.deleteAllNotesForUser(sessionManager.getEmail());
+        photoDatabaseHelper.deleteAllPhotosFromUser(sessionManager.getEmail());
+        favorisDatabaseHelper.deleteAllFavorisForUser(sessionManager.getEmail());
         dbHelper.deleteUser(sessionManager.getEmail());
         sessionManager.logoutUser();
         ((MainActivity) getActivity()).updateMenuVisibility();

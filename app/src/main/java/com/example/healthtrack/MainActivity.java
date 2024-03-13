@@ -1,5 +1,8 @@
     package com.example.healthtrack;
 
+    import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+    import android.content.Intent;
     import android.os.Bundle;
     import android.util.Log;
     import android.view.Menu;
@@ -27,15 +30,14 @@
     import com.google.android.gms.maps.OnMapReadyCallback;
     import com.google.android.gms.maps.model.LatLng;
     import com.google.android.gms.maps.model.MarkerOptions;
+    import com.example.healthtrack.service.CheckImageService;
 
-    public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
+    public class MainActivity extends AppCompatActivity {
         private ActivityMainBinding binding;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
-
 
             binding = ActivityMainBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
@@ -52,8 +54,6 @@
                     replaceFragment(new HomeLoginFragment());
                 } else if (itemId == R.id.action_account) {
                     replaceFragment(new AccountFragment());
-                } else if (itemId == R.id.action_map) {
-                    replaceFragment(new MapFragment());
                 } else if (itemId == R.id.action_exercices) {
                     replaceFragment(new ExercisesFragment());
                 }else if (itemId == R.id.action_progress) {
@@ -70,6 +70,10 @@
             if (actionBar != null) {
                 actionBar.setDisplayShowTitleEnabled(false);
             }
+
+            Intent CheckImageService = new Intent(this, CheckImageService.class);
+            Log.d(TAG, "TACHE DE FOND LANCE");
+            startService(CheckImageService);
         }
 
 
@@ -86,6 +90,9 @@
             if (sessionManager.isLoggedIn()) {
                 replaceFragment(new HomeLoginFragment());
                 binding.bottomNavigationView.inflateMenu(R.menu.bottom_navigation_menu_login);
+                if ("guest".equals(sessionManager.getEmail())) {
+                    menu.findItem(R.id.action_progress).setVisible(false);
+                }
             }
             else {
                 replaceFragment(new HomeFragment());
@@ -110,12 +117,5 @@
 
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.commit();
-        }
-
-        @Override
-        public void onMapReady(@NonNull GoogleMap googleMap) {
-            LatLng location = new LatLng(47.5872965,1.3338788);
-            googleMap.addMarker(new MarkerOptions().position(location).title("Blois"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,12));
         }
     }

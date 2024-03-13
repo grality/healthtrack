@@ -89,4 +89,12 @@ public class NoteDatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id), userEmail});
         db.close();
     }
+
+    public void deleteAllNotesForUser(String userEmail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NOTES, KEY_EMAIL + " = ?",
+                new String[]{userEmail});
+        db.close();
+    }
+
 }
