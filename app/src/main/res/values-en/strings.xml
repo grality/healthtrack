@@ -51,4 +51,8 @@
     <string name="login_guest">Login as guest</string>
     <string name="remind">Reminder</string>
     <string name="remind_evolution">You need to take your daily photo to visually track your physical evolution.</string>
+    <string name="email_adress_to_enter">Email adress :</string>
+    <string name="username_to_enter">Username :</string>
+    <string name="password_to_enter">Password :</string>
+    <string name="confirm_password_to_enter">Confirm password :</string>
 </resources>

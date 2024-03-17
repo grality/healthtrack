@@ -51,4 +51,8 @@
     <string name="login_guest">Se connecter en invité</string>
     <string name="remind">Rappel</string>
     <string name="remind_evolution">Il faut prendre votre photo quotidienne pour suivre votre évolution physique visuellement.</string>
+    <string name="email_adress_to_enter">Entrez l\'adresse Email :</string>
+    <string name="username_to_enter">Nom d\'utilisateur :</string>
+    <string name="password_to_enter">Mot de passe :</string>
+    <string name="confirm_password_to_enter">Confirmer le mot de passe :</string>
 </resources>

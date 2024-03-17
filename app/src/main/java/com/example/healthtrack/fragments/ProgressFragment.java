@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -37,7 +38,7 @@ public class ProgressFragment extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_CAMERA_PERMISSION = 100;
 
-    private Button btnTakePhoto;
+    private ImageButton btnTakePhoto;
     private ListView photoListView;
     private List<Photo> photoList;
     private PhotoAdapter photoAdapter;
