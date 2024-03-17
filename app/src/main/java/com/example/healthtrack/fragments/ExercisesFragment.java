@@ -1,29 +1,28 @@
 package com.example.healthtrack.fragments;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 import com.example.healthtrack.Adapter.ExerciseAdapter;
 import com.example.healthtrack.R;
 import com.example.healthtrack.database.FavorisDatabaseHelper;
 import com.example.healthtrack.models.Exercise;
 import com.example.healthtrack.utils.SessionManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,14 +34,15 @@ public class ExercisesFragment extends Fragment {
     private List<Exercise> exercises;
     private String selectedMuscleType;
 
+    private ExerciseAdapter adapter;
+
 
     public ExercisesFragment() {
         // Required empty public constructor
     }
 
     public static ExercisesFragment newInstance() {
-        ExercisesFragment fragment = new ExercisesFragment();
-        return fragment;
+        return new ExercisesFragment();
     }
 
     @Override
@@ -63,32 +63,61 @@ public class ExercisesFragment extends Fragment {
         exercises = new ArrayList<>(baseExercises);
 
         // Créer un adaptateur pour la liste d'exercices
-        ExerciseAdapter adapter = new ExerciseAdapter(requireContext(), exercises);
+        adapter = new ExerciseAdapter(requireContext(), exercises);
 
         // Définir l'adaptateur sur la ListView
         listView.setAdapter(adapter);
 
-        Spinner spinnerMuscleType = view.findViewById(R.id.spinner_categories);
 
-        spinnerMuscleType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                selectedMuscleType = adapterView.getItemAtPosition(position).toString();
-                Log.d("MuscleType", selectedMuscleType);
 
-                if (!"Toutes les categories".equals(selectedMuscleType) && !"All the categories".equals(selectedMuscleType)) {
-                    List<Exercise> filteredExercises = filterExercisesByMuscleType(baseExercises, selectedMuscleType);
-                    adapter.updateList(filteredExercises);
-                } else {
-                    // Afficher tous les exercices si "Toutes les catégories" est sélectionné
-                    adapter.updateList(baseExercises);
+        if (isTabletMode()) {
+            Button buttonAll = view.findViewById(R.id.button_all);
+            ImageButton buttonLegs = view.findViewById(R.id.button_legs);
+            ImageButton buttonGlutes = view.findViewById(R.id.button_glutes);
+            ImageButton buttonAbs = view.findViewById(R.id.button_abs);
+            ImageButton buttonArms = view.findViewById(R.id.button_arms);
+            ImageButton buttonPecs = view.findViewById(R.id.button_pecs);
+            ImageButton buttonShoulders = view.findViewById(R.id.button_shoulders);
+
+            buttonAll.setTag(getString(R.string.category_all));
+            buttonLegs.setTag(getString(R.string.category_legs));
+            buttonGlutes.setTag(getString(R.string.category_glutes));
+            buttonAbs.setTag(getString(R.string.category_abs));
+            buttonArms.setTag(getString(R.string.category_arms));
+            buttonPecs.setTag(getString(R.string.category_pecs));
+            buttonShoulders.setTag(getString(R.string.category_shoulders));
+
+
+
+            buttonAll.setOnClickListener(this::onCategoryButtonClick);
+            buttonLegs.setOnClickListener(this::onCategoryButtonClick);
+            buttonGlutes.setOnClickListener(this::onCategoryButtonClick);
+            buttonAbs.setOnClickListener(this::onCategoryButtonClick);
+            buttonArms.setOnClickListener(this::onCategoryButtonClick);
+            buttonPecs.setOnClickListener(this::onCategoryButtonClick);
+            buttonShoulders.setOnClickListener(this::onCategoryButtonClick);
+
+        } else {
+            Spinner spinnerCategories = view.findViewById(R.id.spinner_categories);
+            spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                    selectedMuscleType = adapterView.getItemAtPosition(position).toString();
+                    Log.d("MuscleType", selectedMuscleType);
+
+                    if (!"Toutes les categories".equals(selectedMuscleType) && !"All the categories".equals(selectedMuscleType)) {
+                        List<Exercise> filteredExercises = filterExercisesByMuscleType(baseExercises, selectedMuscleType);
+                        adapter.updateList(filteredExercises);
+                    } else {
+                        adapter.updateList(baseExercises);
+                    }
                 }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                }
+            });
+        }
 
         Switch switchFavorite = view.findViewById(R.id.switchFavorite);
         switchFavorite.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -109,6 +138,31 @@ public class ExercisesFragment extends Fragment {
 
         return view;
     }
+
+    private boolean isTabletMode() {
+        // Obtenez la configuration actuelle de l'appareil
+        Configuration configuration = getResources().getConfiguration();
+
+        // Vérifiez si l'appareil est en mode tablette en examinant la taille de l'écran (screenLayout)
+        int screenLayout = configuration.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        // Si l'écran est de taille XLARGE ou LARGE, alors nous sommes probablement en mode tablette
+        return screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE ||
+                screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }
+
+    private void onCategoryButtonClick(View view) {
+        String selectedMuscleType = (String) view.getTag();
+
+        Log.d("selectedMuscleTypeButton", selectedMuscleType);
+        if (!"Toutes les categories".equals(selectedMuscleType) && !"All the categories".equals(selectedMuscleType)) {
+            List<Exercise> filteredExercises = filterExercisesByMuscleType(baseExercises, selectedMuscleType);
+            adapter.updateList(filteredExercises);
+        } else {
+            adapter.updateList(baseExercises);
+        }
+    }
+
 
     private List<Exercise> filterExercisesByMuscleType(List<Exercise> allExercises, String muscleType) {
         List<Exercise> filteredExercises = new ArrayList<>();

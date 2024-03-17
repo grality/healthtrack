@@ -28,7 +28,7 @@
                 android:layout_width="70dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo_old" />
 
             <LinearLayout
                 android:id="@+id/linearToolbarText"
