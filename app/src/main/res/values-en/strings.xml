@@ -55,4 +55,38 @@
     <string name="username_to_enter">Username :</string>
     <string name="password_to_enter">Password :</string>
     <string name="confirm_password_to_enter">Confirm password :</string>
+
+    <string name="exercise_squats">Squats</string>
+    <string name="exercise_squats_description">Exercise for legs</string>
+    <string name="exercise_push_ups">Push-ups</string>
+    <string name="exercise_push_ups_description">Exercise for arms and chest</string>
+    <string name="exercise_crunches">Crunches</string>
+    <string name="exercise_crunches_description">Exercise for abdominals</string>
+    <string name="exercise_developpe_arnold_haltere">Dumbbell Arnold Press</string>
+    <string name="exercise_developpe_arnold_haltere_description">Exercise for shoulders</string>
+    <string name="exercise_developpe_couche_prise_inversee">Incline Bench Press</string>
+    <string name="exercise_developpe_couche_prise_inversee_description">Exercise for chest</string>
+    <string name="exercise_dips_barres_paralleles_triceps">Parallel Bar Dips</string>
+    <string name="exercise_dips_barres_paralleles_triceps_description">Exercise for triceps</string>
+    <string name="exercise_ecartes_decline_avec_halteres">Decline Dumbbell Flyes</string>
+    <string name="exercise_ecartes_decline_avec_halteres_description">Exercise for chest</string>
+    <string name="exercise_extensions_des_mollets_avec_partenaire">Calf Raises with Partner</string>
+    <string name="exercise_extensions_des_mollets_avec_partenaire_description">Exercise for calves</string>
+    <string name="exercise_extension_des_mollets_donkey">Donkey Calf Raises</string>
+    <string name="exercise_extension_des_mollets_donkey_description">Exercise for calves</string>
+    <string name="exercise_face_pull">Face Pull</string>
+    <string name="exercise_face_pull_description">Exercise for shoulders</string>
+    <string name="exercise_good_morning_ischio_cuisses_fessiers">Good Morning</string>
+    <string name="exercise_good_morning_ischio_cuisses_fessiers_description">Exercise for hamstrings and glutes</string>
+    <string name="exercise_leg_curl_allonge_cuisses_ischios">Lying Leg Curls</string>
+    <string name="exercise_leg_curl_allonge_cuisses_ischios_description">Exercise for thighs and hamstrings</string>
+    <string name="exercise_pecs_decline">Decline Bench Press</string>
+    <string name="exercise_pecs_decline_description">Exercise for chest</string>
+    <string name="exercise_presse_a_cuisses_inclinee">Incline Leg Press</string>
+    <string name="exercise_presse_a_cuisses_inclinee_description">Exercise for thighs</string>
+    <string name="exercise_releve_jambes_chaise_romaine_abdominaux">Leg Raises</string>
+    <string name="exercise_releve_jambes_chaise_romaine_abdominaux_description">Exercise for abdominals</string>
+    <string name="exercise_roulette_abdominaux">Ab Roller</string>
+    <string name="exercise_roulette_abdominaux_description">Exercise for abdominals</string>
+
 </resources>
