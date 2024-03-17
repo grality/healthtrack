@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,11 +39,11 @@ public class ProgressFragment extends Fragment {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_CAMERA_PERMISSION = 100;
 
-    private ImageButton btnTakePhoto;
     private ListView photoListView;
     private List<Photo> photoList;
     private PhotoAdapter photoAdapter;
     private PhotoDatabaseHelper dbHelper;
+    private View btnTakePhoto;
 
     public ProgressFragment() {
     }
@@ -52,7 +53,13 @@ public class ProgressFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_progress, container, false);
 
-        btnTakePhoto = view.findViewById(R.id.btn_take_photo);
+        if (isTabletMode()){
+            btnTakePhoto = view.findViewById(R.id.btn_take_photo);
+        }else {
+            btnTakePhoto = view.findViewById(R.id.btn_take_photo);
+
+        }
+
         photoListView = view.findViewById(R.id.photoListView);
 
         photoList = new ArrayList<>();
@@ -85,6 +92,18 @@ public class ProgressFragment extends Fragment {
         } else {
             startCameraIntent();
         }
+    }
+
+    private boolean isTabletMode() {
+        // Obtenez la configuration actuelle de l'appareil
+        Configuration configuration = getResources().getConfiguration();
+
+        // Vérifiez si l'appareil est en mode tablette en examinant la taille de l'écran (screenLayout)
+        int screenLayout = configuration.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        // Si l'écran est de taille XLARGE ou LARGE, alors nous sommes probablement en mode tablette
+        return screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE ||
+                screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(),
