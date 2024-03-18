@@ -2,6 +2,7 @@ package com.example.healthtrack.database;
 
 import static com.example.healthtrack.utils.Utils.hashPassword;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -96,7 +97,7 @@ public class DBHelper extends SQLiteOpenHelper {
         );
 
         if (cursor != null && cursor.moveToFirst()) {
-            String storedPasswordHash = cursor.getString(cursor.getColumnIndex("password"));
+            @SuppressLint("Range") String storedPasswordHash = cursor.getString(cursor.getColumnIndex("password"));
             cursor.close();
             return storedPasswordHash.equals(hashPassword(password));
         }

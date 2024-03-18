@@ -4,17 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <ScrollView
+        android:id="@+id/left_part"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:weightSum="4">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/right_part"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5">
 
         <LinearLayout
-            android:id="@+id/left_part"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
 
             <Switch
@@ -45,8 +49,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:alignmentMode="alignMargins"
-                    android:columnCount="2"
-                    android:rowCount="3"
+                    android:columnCount="3"
+                    android:rowCount="2"
                     android:useDefaultMargins="true">
 
                     <androidx.cardview.widget.CardView
@@ -62,6 +66,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
+                            android:importantForAccessibility="no"
                             android:src="@drawable/icons8_jambe_100"
                             android:text="@string/category_legs" />
 
@@ -80,6 +85,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
+                            android:importantForAccessibility="no"
                             android:src="@drawable/icons8_quadriceps_100"
                             android:text="@string/category_glutes" />
 
@@ -98,6 +104,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
+                            android:importantForAccessibility="no"
                             android:src="@drawable/icons8_abdominaux_100"
                             android:text="@string/category_abs" />
 
@@ -116,6 +123,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
+                            android:importantForAccessibility="no"
                             android:src="@drawable/icons8_biceps_100"
                             android:text="@string/category_arms" />
 
@@ -134,10 +142,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
+                            android:importantForAccessibility="no"
                             android:src="@drawable/icons8_poitrine_100"
-                            android:text="@string/category_pecs"
-
-                            />
+                            android:text="@string/category_pecs" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -155,31 +162,34 @@
                             android:layout_height="wrap_content"
                             android:background="@color/white"
                             android:src="@drawable/icons8_epaules_100"
-                            android:text="@string/category_shoulders" />
+                            android:text="@string/category_shoulders"
+                            android:importantForAccessibility="no" />
 
                     </androidx.cardview.widget.CardView>
 
                 </GridLayout>
 
-
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/right_part"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="3">
+    </ScrollView>
 
-            <ListView
-                android:id="@+id/listViewExercises"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            />
 
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/right_part"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/left_part"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5">
 
+        <ListView
+            android:id="@+id/listViewExercises"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        />
 
     </LinearLayout>
 

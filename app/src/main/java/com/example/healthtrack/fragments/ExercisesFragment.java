@@ -130,13 +130,17 @@ public class ExercisesFragment extends Fragment {
         // Obtenez la configuration actuelle de l'appareil
         Configuration configuration = getResources().getConfiguration();
 
-        // Vérifiez si l'appareil est en mode tablette en examinant la taille de l'écran (screenLayout)
+        // Récupérez la taille de l'écran et l'orientation
         int screenLayout = configuration.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        int orientation = configuration.orientation;
 
-        // Si l'écran est de taille XLARGE ou LARGE, alors nous sommes probablement en mode tablette
-        return screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE ||
-                screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE;
+        // Vérifiez si l'appareil est en mode tablette en examinant la taille de l'écran (screenLayout)
+        // et l'orientation de l'écran
+        return (screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE ||
+                screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE) ||
+                orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
+
 
     private void onCategoryButtonClick(View view) {
         String selectedMuscleType = (String) view.getTag();
