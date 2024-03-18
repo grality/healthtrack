@@ -135,20 +135,20 @@ public class AccountFragment extends Fragment {
             sessionManager1.logoutUser();
 
             ((MainActivity) getActivity()).updateMenuVisibility();
-            Toast.makeText(getActivity(), "Logout successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.toast_logout, Toast.LENGTH_SHORT).show();
         });
 
         buttonSave.setOnClickListener(v -> saveChanges());
 
         buttonDelete.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Confirmation");
-            builder.setMessage("Are you sure you want to delete the account ?");
-            builder.setPositiveButton("Yes", (dialog, which) -> deleteAccount());
-            builder.setNegativeButton("No", (dialog, which) -> {
-            });
+            builder.setTitle(getString(R.string.confirmation_title));
+            builder.setMessage(getString(R.string.confirmation_message));
+            builder.setPositiveButton(getString(R.string.confirmation_yes), (dialog, which) -> deleteAccount());
+            builder.setNegativeButton(getString(R.string.confirmation_no), (dialog, which) -> {});
             builder.show();
         });
+
 
 
         return view;
@@ -162,7 +162,7 @@ public class AccountFragment extends Fragment {
         SessionManager sessionManager = new SessionManager(getActivity());
 
         if (!newPassword.isEmpty() && !newConfirmPassword.isEmpty() && !newPassword.equals(newConfirmPassword)) {
-            Toast.makeText(getActivity(), "Les mots de passe ne correspondent pas", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.not_matching_password, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -180,7 +180,8 @@ public class AccountFragment extends Fragment {
             dbHelper.updatePassword(sessionManager.getEmail(), newPassword);
         }
 
-        Toast.makeText(getActivity(), "Modifications enregistrées avec succès", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.modifications_save_success, Toast.LENGTH_SHORT).show();
+
     }
 
     private void deleteAccount() {
@@ -194,6 +195,6 @@ public class AccountFragment extends Fragment {
         dbHelper.deleteUser(sessionManager.getEmail());
         sessionManager.logoutUser();
         ((MainActivity) getActivity()).updateMenuVisibility();
-        Toast.makeText(getActivity(), "Account deleted successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.account_deleted_successfully, Toast.LENGTH_SHORT).show();
     }
 }

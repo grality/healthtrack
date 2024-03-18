@@ -87,4 +87,17 @@
     <string name="exercise_releve_jambes_chaise_romaine_abdominaux_description">Exercice pour les abdominaux</string>
     <string name="exercise_roulette_abdominaux">Roulette Abdominaux</string>
     <string name="exercise_roulette_abdominaux_description">Exercice pour les abdominaux</string>
+    <string name="confirmation_title">Confirmation</string>
+    <string name="confirmation_message">Êtes-vous sûr de supprimer votre compte ?</string>
+    <string name="confirmation_yes">Oui</string>
+    <string name="confirmation_no">Non</string>
+    <string name="modifications_save_success">Modifications enregistrées avec succès</string>
+    <string name="account_deleted_successfully">Le compte à bien été supprimé</string>
+    <string name="toast_logout">Vous avez été déconnecté</string>
+    <string name="not_matching_password">Les mots de passe ne correspondent pas</string>
+    <string name="login_successfull">Connexion établie</string>
+    <string name="invalid_email_or_password">Email ou mot de passe invalide</string>
+    <string name="fill_set_and_reps">Remplisez les sets et les reps</string>
+    <string name="user_registered_successfully">L\'utilisateur à été enregistré avec succès</string>
+    <string name="error_registering_user">Erreur lors de l\'enregistrement de l\'utilisateur</string>
 </resources>

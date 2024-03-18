@@ -57,7 +57,7 @@ public class NotesFragment extends Fragment {
         String reps = editTextReps.getText().toString();
 
         if (sets.isEmpty() || reps.isEmpty()) {
-            Toast.makeText(getContext(), "Veuillez remplir les champs Sets et Reps", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.fill_set_and_reps, Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -68,12 +68,12 @@ public class RegisterFragment extends Fragment {
                 SessionManager sessionManager = new SessionManager(getActivity());
                 sessionManager.loginUser(email, username);
                 ((MainActivity) getActivity()).updateMenuVisibility();
-                Toast.makeText(getActivity(), "User registered successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.user_registered_successfully, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getActivity(), "Error registering user!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.error_registering_user, Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(getActivity(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.not_matching_password, Toast.LENGTH_SHORT).show();
         }
     }
 

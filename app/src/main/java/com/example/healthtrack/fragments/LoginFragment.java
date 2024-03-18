@@ -64,9 +64,9 @@ public class LoginFragment extends Fragment {
             sessionManager.loginUser(email, user.getUsername());
 
             ((MainActivity) getActivity()).updateMenuVisibility();
-            Toast.makeText(getActivity(), "Login successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.login_successfull, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getActivity(), "Invalid email or password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.invalid_email_or_password, Toast.LENGTH_SHORT).show();
         }
     }
 }
