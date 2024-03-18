@@ -1,12 +1,9 @@
-<vector android:height="24dp" android:tint="#000000"
-    android:viewportHeight="24" android:viewportWidth="24"
-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="@android:color/white" android:pathData="M10,4h4v4h-4z"/>
-    <path android:fillColor="@android:color/white" android:pathData="M4,16h4v4h-4z"/>
-    <path android:fillColor="@android:color/white" android:pathData="M4,10h4v4h-4z"/>
-    <path android:fillColor="@android:color/white" android:pathData="M4,4h4v4h-4z"/>
-    <path android:fillColor="@android:color/white" android:pathData="M14,12.42l0,-2.42l-4,0l0,4l2.42,0z"/>
-    <path android:fillColor="@android:color/white" android:pathData="M20.88,11.29l-1.17,-1.17c-0.16,-0.16 -0.42,-0.16 -0.58,0L18.25,11L20,12.75l0.88,-0.88C21.04,11.71 21.04,11.45 20.88,11.29z"/>
-    <path android:fillColor="@android:color/white" android:pathData="M11,18.25l0,1.75l1.75,0l6.67,-6.67l-1.75,-1.75z"/>
-    <path android:fillColor="@android:color/white" android:pathData="M16,4h4v4h-4z"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="960"
+    android:viewportHeight="960">
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="M80,800L80,688Q80,655 97,626Q114,597 144,582Q195,556 259,538Q323,520 400,520Q430,520 458.5,523Q487,526 514,532L444,602Q433,600 422.5,600Q412,600 400,600Q329,600 272.5,617Q216,634 180,654Q171,659 165.5,668Q160,677 160,688L160,720L410,720L490,800L80,800ZM622,816L484,678L540,622L622,704L824,502L880,558L622,816ZM400,480Q334,480 287,433Q240,386 240,320Q240,254 287,207Q334,160 400,160Q466,160 513,207Q560,254 560,320Q560,386 513,433Q466,480 400,480ZM410,720Q410,720 410,720Q410,720 410,720L410,720L410,720L410,720L410,720Q410,720 410,720Q410,720 410,720Q410,720 410,720Q410,720 410,720ZM400,400Q433,400 456.5,376.5Q480,353 480,320Q480,287 456.5,263.5Q433,240 400,240Q367,240 343.5,263.5Q320,287 320,320Q320,353 343.5,376.5Q367,400 400,400ZM400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Z"/>
 </vector>
