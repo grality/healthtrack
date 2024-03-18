@@ -8,7 +8,6 @@ public class Photo {
     private String description; // Description de la progression
     private String date; // Date de la progression
 
-    // Constructeur
     public Photo(Bitmap photo, String description, String date) {
         this.photo = photo;
         this.description = description;
@@ -19,7 +18,6 @@ public class Photo {
 
     }
 
-    // Méthodes getter et setter pour chaque attribut
     public int getId() {
         return id;
     }

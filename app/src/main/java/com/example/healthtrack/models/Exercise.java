@@ -1,7 +1,5 @@
 package com.example.healthtrack.models;
 
-import android.graphics.drawable.Drawable;
-
 import com.example.healthtrack.R;
 
 import java.util.ArrayList;
@@ -36,6 +34,7 @@ public class Exercise {
         exercises.add(new Exercise("Relevé Jambes Chaise Romaine Abdominaux", "Exercice pour les abdominaux", "Abs", R.drawable.releve_jambes_chaise_romaine_abdominaux_musculation, false, 15));
         exercises.add(new Exercise("Roulette Abdominaux", "Exercice pour les abdominaux", "Abs", R.drawable.roulette_abdominaux_musculation, false, 16));
     }
+
     public Exercise(String title, String description, String muscleType, int imageResource, boolean favorite, int id) {
         this.title = title;
         this.description = description;
@@ -45,9 +44,7 @@ public class Exercise {
         this.id = id;
     }
 
-    public Exercise() {
-
-    }
+    public Exercise() {}
 
     public String getTitle() {
         return title;
@@ -104,9 +101,5 @@ public class Exercise {
             }
         }
         return null;
-    }
-
-    public static List<Exercise> getAllExercises() {
-        return exercises;
     }
 }

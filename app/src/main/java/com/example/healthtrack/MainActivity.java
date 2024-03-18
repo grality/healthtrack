@@ -7,7 +7,6 @@
     import android.util.Log;
     import android.view.Menu;
 
-    import androidx.annotation.NonNull;
     import androidx.appcompat.app.ActionBar;
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.appcompat.widget.Toolbar;
@@ -21,16 +20,10 @@
     import com.example.healthtrack.fragments.HomeFragment;
     import com.example.healthtrack.fragments.HomeLoginFragment;
     import com.example.healthtrack.fragments.LoginFragment;
-    import com.example.healthtrack.fragments.MapFragment;
     import com.example.healthtrack.fragments.ProgressFragment;
     import com.example.healthtrack.fragments.RegisterFragment;
-    import com.example.healthtrack.utils.SessionManager;
-    import com.google.android.gms.maps.CameraUpdateFactory;
-    import com.google.android.gms.maps.GoogleMap;
-    import com.google.android.gms.maps.OnMapReadyCallback;
-    import com.google.android.gms.maps.model.LatLng;
-    import com.google.android.gms.maps.model.MarkerOptions;
     import com.example.healthtrack.service.CheckImageService;
+    import com.example.healthtrack.utils.SessionManager;
 
     public class MainActivity extends AppCompatActivity {
         private ActivityMainBinding binding;

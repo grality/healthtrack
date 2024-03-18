@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -35,10 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProgressFragment extends Fragment {
-
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private static final int REQUEST_CAMERA_PERMISSION = 100;
-
     private ListView photoListView;
     private List<Photo> photoList;
     private PhotoAdapter photoAdapter;
@@ -68,12 +63,7 @@ public class ProgressFragment extends Fragment {
 
         dbHelper = new PhotoDatabaseHelper(getContext());
 
-        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dispatchTakePictureIntent();
-            }
-        });
+        btnTakePhoto.setOnClickListener(v -> dispatchTakePictureIntent());
 
         SessionManager sessionManager = new SessionManager(getContext());
         List<Photo> dbPhotos = dbHelper.getAllPhotos(sessionManager.getEmail());
@@ -147,24 +137,21 @@ public class ProgressFragment extends Fragment {
         imageView.setImageBitmap(imageBitmap);
         AlertDialog dialog = builder.create();
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String description = editTextDescription.getText().toString();
-                String currentDate = Utils.getCurrentDate();
+        btnSave.setOnClickListener(v -> {
+            String description = editTextDescription.getText().toString();
+            String currentDate = Utils.getCurrentDate();
 
-                if (imageBitmap != null) {
-                    Photo photo = new Photo(imageBitmap, description, currentDate);
-                    SessionManager sessionManager = new SessionManager(getContext());
-                    dbHelper.addPhoto(photo, sessionManager.getEmail());
-                    photoList.add(0, photo);
-                    photoAdapter.notifyDataSetChanged();
-                    dialog.dismiss();
-                }
-                else {
-                    Log.d("Progress", "ImageBitmap is null");
-                    // Gérer le cas où l'image est null (peut-être afficher un message à l'utilisateur)
-                }
+            if (imageBitmap != null) {
+                Photo photo = new Photo(imageBitmap, description, currentDate);
+                SessionManager sessionManager = new SessionManager(getContext());
+                dbHelper.addPhoto(photo, sessionManager.getEmail());
+                photoList.add(0, photo);
+                photoAdapter.notifyDataSetChanged();
+                dialog.dismiss();
+            }
+            else {
+                Log.d("Progress", "ImageBitmap is null");
+                // Gérer le cas où l'image est null (peut-être afficher un message à l'utilisateur)
             }
         });
 

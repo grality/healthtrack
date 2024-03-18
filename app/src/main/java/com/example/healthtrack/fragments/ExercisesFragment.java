@@ -24,11 +24,6 @@ import com.example.healthtrack.utils.SessionManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ExercisesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ExercisesFragment extends Fragment {
     private List<Exercise> baseExercises;
     private List<Exercise> exercises;
@@ -38,13 +33,7 @@ public class ExercisesFragment extends Fragment {
 
 
     public ExercisesFragment() {
-        // Required empty public constructor
     }
-
-    public static ExercisesFragment newInstance() {
-        return new ExercisesFragment();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +57,6 @@ public class ExercisesFragment extends Fragment {
         // Définir l'adaptateur sur la ListView
         listView.setAdapter(adapter);
 
-
-
         if (isTabletMode()) {
             Button buttonAll = view.findViewById(R.id.button_all);
             ImageButton buttonLegs = view.findViewById(R.id.button_legs);
@@ -87,8 +74,6 @@ public class ExercisesFragment extends Fragment {
             buttonPecs.setTag(getString(R.string.category_pecs));
             buttonShoulders.setTag(getString(R.string.category_shoulders));
 
-
-
             buttonAll.setOnClickListener(this::onCategoryButtonClick);
             buttonLegs.setOnClickListener(this::onCategoryButtonClick);
             buttonGlutes.setOnClickListener(this::onCategoryButtonClick);
@@ -96,6 +81,8 @@ public class ExercisesFragment extends Fragment {
             buttonArms.setOnClickListener(this::onCategoryButtonClick);
             buttonPecs.setOnClickListener(this::onCategoryButtonClick);
             buttonShoulders.setOnClickListener(this::onCategoryButtonClick);
+
+            adapter.updateList(baseExercises);
 
         } else {
             Spinner spinnerCategories = view.findViewById(R.id.spinner_categories);

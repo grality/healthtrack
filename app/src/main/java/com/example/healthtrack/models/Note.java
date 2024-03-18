@@ -1,11 +1,9 @@
 package com.example.healthtrack.models;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Note {
 
-    public static ArrayList<Note> noteArrayList = new ArrayList<>();
     private int id ;
     private String title;
     private String description;
@@ -71,14 +69,6 @@ public class Note {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Date getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Date deleted) {
-        this.deleted = deleted;
     }
 
     public String getNombreSets() {
