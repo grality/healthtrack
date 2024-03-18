@@ -49,16 +49,13 @@ public class NotesAdapter extends ArrayAdapter<Note> {
 
         ImageView deleteImageView = convertView.findViewById(R.id.TrashImageView);
 
-        deleteImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Note noteToRemove = getItem(position);
-                if (noteToRemove != null) {
-                    SessionManager sessionManager = new SessionManager(getContext());
-                    dbHelper.deleteNote(noteToRemove.getId(), sessionManager.getEmail());
-                    remove(noteToRemove);
-                    notifyDataSetChanged();
-                }
+        deleteImageView.setOnClickListener(v -> {
+            Note noteToRemove = getItem(position);
+            if (noteToRemove != null) {
+                SessionManager sessionManager = new SessionManager(getContext());
+                dbHelper.deleteNote(noteToRemove.getId(), sessionManager.getEmail());
+                remove(noteToRemove);
+                notifyDataSetChanged();
             }
         });
 

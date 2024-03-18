@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Note {
 
-    private int id ;
+    private int id;
     private String title;
     private String description;
     private Date deleted;

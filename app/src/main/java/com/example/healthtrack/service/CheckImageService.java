@@ -55,7 +55,7 @@ public class CheckImageService extends Service {
                 PhotoDatabaseHelper photo = new PhotoDatabaseHelper(getApplicationContext());
                 String email = sessionManager.getEmail();
 
-                if(email != null && !email.equals("guest")) {
+                if (email != null && !email.equals("guest")) {
                     String lastPhotoDate = photo.getLastPhotoDate(email);
                     if (lastPhotoDate != null && Utils.isMoreThan24HoursAgo(lastPhotoDate)) {
                         Log.d(TAG, "run: Dernière photo prise il y a plus de 24 heures");

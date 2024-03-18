@@ -44,7 +44,8 @@ public class Exercise {
         this.id = id;
     }
 
-    public Exercise() {}
+    public Exercise() {
+    }
 
     public String getTitle() {
         return title;

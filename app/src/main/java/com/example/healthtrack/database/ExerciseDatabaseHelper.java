@@ -16,14 +16,14 @@ public class ExerciseDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "exercise_db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String KEY_ID= "id";
+    private static final String KEY_ID = "id";
 
     private static final String TABLE_EXERCISE = "exercise";
-    private static final String KEY_TITLE= "title";
+    private static final String KEY_TITLE = "title";
 
-    private static final String KEY_DESCRITPION ="description";
+    private static final String KEY_DESCRITPION = "description";
 
-    private static final String KEY_MUSCLETYPE= "muscle_type";
+    private static final String KEY_MUSCLETYPE = "muscle_type";
 
     private static final String KEY_IMAGERESSOURCE = "image_ressource";
 
@@ -36,13 +36,13 @@ public class ExerciseDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_EXERCISE_TABLE ="CREATE TABLE "+ TABLE_EXERCISE + "("
-                + KEY_ID +"INTEGER PRIMARY KEY,"
-                + KEY_TITLE +"TEXT ,"
+        String CREATE_EXERCISE_TABLE = "CREATE TABLE " + TABLE_EXERCISE + "("
+                + KEY_ID + "INTEGER PRIMARY KEY,"
+                + KEY_TITLE + "TEXT ,"
                 + KEY_DESCRITPION + "TEXT , "
-                + KEY_MUSCLETYPE  +"TEXT ,"
-                + KEY_IMAGERESSOURCE +" INTEGER , "
-                +KEY_FAVORITE +"BOOLEAN " + ")";
+                + KEY_MUSCLETYPE + "TEXT ,"
+                + KEY_IMAGERESSOURCE + " INTEGER , "
+                + KEY_FAVORITE + "BOOLEAN " + ")";
         db.execSQL(CREATE_EXERCISE_TABLE);
     }
 

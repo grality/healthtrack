@@ -71,6 +71,7 @@ public class FavorisDatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return favoriteExercises;
     }
+
     public void deleteAllFavorisForUser(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FAVORIS, KEY_EMAIL + " = ?", new String[]{email});

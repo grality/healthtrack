@@ -49,12 +49,7 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
         descriptionTextView.setText(currentPhoto.getDescription());
         dateTextView.setText(currentPhoto.getDate());
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFullImage(photoList.get(position).getPhoto(), position);
-            }
-        });
+        imageView.setOnClickListener(v -> showFullImage(photoList.get(position).getPhoto(), position));
 
         return convertView;
     }
@@ -79,22 +74,14 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
         builder.setView(dialogView);
         AlertDialog dialog = builder.create();
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dbHelper.deletePhoto(photoList.get(position).getId());
-                photoList.remove(photoList.get(position));
-                notifyDataSetChanged();
-                dialog.dismiss();
-            }
+        deleteButton.setOnClickListener(v -> {
+            dbHelper.deletePhoto(photoList.get(position).getId());
+            photoList.remove(photoList.get(position));
+            notifyDataSetChanged();
+            dialog.dismiss();
         });
 
-        hideButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        hideButton.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }

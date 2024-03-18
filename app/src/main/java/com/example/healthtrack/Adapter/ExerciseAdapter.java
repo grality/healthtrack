@@ -104,21 +104,18 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
             SessionManager sessionManager = new SessionManager(getContext());
 
             // OnClickListener pour l'étoile
-            starImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Inverser l'état de favori de l'exercice
-                    currentExercise.setFavorite(!currentExercise.isFavorite());
-                    if (currentExercise.isFavorite()) {
-                        favorisDatabaseHelper.addFavoriteExercise(sessionManager.getEmail(), currentExercise.getId());
-                        starImageView.setImageResource(R.drawable.ic_star);
-                    } else {
-                        favorisDatabaseHelper.removeFavoriteExercise(sessionManager.getEmail(), currentExercise.getId());
-                        starImageView.setImageResource(R.drawable.ic_star_empty);
-                    }
-                    // Mettre à jour l'affichage
-                    notifyDataSetChanged();
+            starImageView.setOnClickListener(v -> {
+                // Inverser l'état de favori de l'exercice
+                currentExercise.setFavorite(!currentExercise.isFavorite());
+                if (currentExercise.isFavorite()) {
+                    favorisDatabaseHelper.addFavoriteExercise(sessionManager.getEmail(), currentExercise.getId());
+                    starImageView.setImageResource(R.drawable.ic_star);
+                } else {
+                    favorisDatabaseHelper.removeFavoriteExercise(sessionManager.getEmail(), currentExercise.getId());
+                    starImageView.setImageResource(R.drawable.ic_star_empty);
                 }
+                // Mettre à jour l'affichage
+                notifyDataSetChanged();
             });
 
             listItem.setOnClickListener(v -> {
