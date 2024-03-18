@@ -58,6 +58,7 @@ public class ExercisesFragment extends Fragment {
         listView.setAdapter(adapter);
 
         if (isTabletMode()) {
+            ///Initialisation des items
             Button buttonAll = view.findViewById(R.id.button_all);
             ImageButton buttonLegs = view.findViewById(R.id.button_legs);
             ImageButton buttonGlutes = view.findViewById(R.id.button_glutes);
@@ -66,6 +67,7 @@ public class ExercisesFragment extends Fragment {
             ImageButton buttonPecs = view.findViewById(R.id.button_pecs);
             ImageButton buttonShoulders = view.findViewById(R.id.button_shoulders);
 
+            ///SetTag pour reperer les différents boutons en mode tablette
             buttonAll.setTag(getString(R.string.category_all));
             buttonLegs.setTag(getString(R.string.category_legs));
             buttonGlutes.setTag(getString(R.string.category_glutes));
@@ -74,6 +76,7 @@ public class ExercisesFragment extends Fragment {
             buttonPecs.setTag(getString(R.string.category_pecs));
             buttonShoulders.setTag(getString(R.string.category_shoulders));
 
+            /// Listners vers onCategoryButtonClick de chaque ImageButtons
             buttonAll.setOnClickListener(this::onCategoryButtonClick);
             buttonLegs.setOnClickListener(this::onCategoryButtonClick);
             buttonGlutes.setOnClickListener(this::onCategoryButtonClick);
@@ -85,13 +88,16 @@ public class ExercisesFragment extends Fragment {
             adapter.updateList(baseExercises);
 
         } else {
+
             Spinner spinnerCategories = view.findViewById(R.id.spinner_categories);
             spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                    ///Muscle choisi dans le spinner
                     selectedMuscleType = adapterView.getItemAtPosition(position).toString();
                     Log.d("MuscleType", selectedMuscleType);
 
+                    ///Si ce n'est pas toutes catégorie faire un tri
                     if (!"Toutes les categories".equals(selectedMuscleType) && !"All the categories".equals(selectedMuscleType)) {
                         List<Exercise> filteredExercises = filterExercisesByMuscleType(baseExercises, selectedMuscleType);
                         adapter.updateList(filteredExercises);
@@ -143,9 +149,11 @@ public class ExercisesFragment extends Fragment {
 
 
     private void onCategoryButtonClick(View view) {
+        ///Recuperer le tag des ImageButtons
         String selectedMuscleType = (String) view.getTag();
 
         Log.d("selectedMuscleTypeButton", selectedMuscleType);
+        //Si ce n'est pas toutes catégorie faire un tri
         if (!"Toutes les categories".equals(selectedMuscleType) && !"All the categories".equals(selectedMuscleType)) {
             List<Exercise> filteredExercises = filterExercisesByMuscleType(baseExercises, selectedMuscleType);
             adapter.updateList(filteredExercises);
@@ -156,6 +164,8 @@ public class ExercisesFragment extends Fragment {
 
 
     private List<Exercise> filterExercisesByMuscleType(List<Exercise> allExercises, String muscleType) {
+        ///Fonction les exercices de l'adapter à partir de parametre muscleType
+
         List<Exercise> filteredExercises = new ArrayList<>();
         for (Exercise exercise : allExercises) {
             if (muscleType.equals(exercise.getMuscleType())) {

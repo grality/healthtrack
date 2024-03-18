@@ -59,6 +59,7 @@ public class AccountFragment extends Fragment {
 
         dbHelper = new DBHelper(getActivity());
 
+        ///Initialisation des items
         buttonLogout = view.findViewById(R.id.buttonLogout);
         editTextUsername = view.findViewById(R.id.editTextUsername);
         editTextEmail = view.findViewById(R.id.editTextEmail);

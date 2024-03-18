@@ -1,7 +1,5 @@
 package com.example.healthtrack.models;
 
-import android.util.Log;
-
 import com.example.healthtrack.R;
 
 import java.util.ArrayList;

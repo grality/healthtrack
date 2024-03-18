@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
 
         buttonLoginGuest = view.findViewById(R.id.buttonLoginGuest);
 
+        ///Utilisateur Guest
         buttonLoginGuest.setOnClickListener(v -> {
             SessionManager sessionManager = new SessionManager(getActivity());
             sessionManager.loginUser("guest", "Guest");

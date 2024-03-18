@@ -48,6 +48,7 @@ public class ProgressFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_progress, container, false);
 
+        ///Verifie si on est en mode tablette
         if (isTabletMode()){
             btnTakePhoto = view.findViewById(R.id.btn_take_photo);
         }else {
@@ -88,12 +89,15 @@ public class ProgressFragment extends Fragment {
         // Obtenez la configuration actuelle de l'appareil
         Configuration configuration = getResources().getConfiguration();
 
-        // Vérifiez si l'appareil est en mode tablette en examinant la taille de l'écran (screenLayout)
+        // Récupérez la taille de l'écran et l'orientation
         int screenLayout = configuration.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        int orientation = configuration.orientation;
 
-        // Si l'écran est de taille XLARGE ou LARGE, alors nous sommes probablement en mode tablette
-        return screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE ||
-                screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE;
+        // Vérifiez si l'appareil est en mode tablette en examinant la taille de l'écran (screenLayout)
+        // et l'orientation de l'écran
+        return (screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE ||
+                screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE) ||
+                orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
     private final ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(),

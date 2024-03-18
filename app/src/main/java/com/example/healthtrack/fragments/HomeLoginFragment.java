@@ -39,6 +39,8 @@ public class HomeLoginFragment extends Fragment {
     }
 
     private void displayWelcomeMessage() {
+
+        ///Affiche un message de retour
         SessionManager sessionManager = new SessionManager(getActivity());
         String username = sessionManager.getUsername();
 

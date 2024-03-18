@@ -87,6 +87,7 @@ public class NotesFragment extends Fragment {
             exerciceTitle = null;
         }
 
+        ///Initialisation des items
         TextView noteTitle = rootView.findViewById(R.id.textNoteTitle);
         noteTitle.setText(exerciceTitle);
 
